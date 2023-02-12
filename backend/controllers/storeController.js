@@ -26,7 +26,20 @@ const getProductDetails = async (req, res) => {
     res.status(200).json(product)
 }
 
+const createProduct = async (req, res) => {
+    const {title, description, price, image} = req.body;
+
+    try {
+        const product = await Product.create({name: title, description, price, image})
+        res.status(200).json(product);
+    }
+    catch (error) {
+        res.status(400).json({error: error.message})
+    }
+}
+
 module.exports = {
     getAllProducts,
-    getProductDetails
+    getProductDetails,
+    createProduct
 }
