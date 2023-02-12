@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 require('dotenv').config();
+const storeRoutes = require("./routes/storeRoutes");
 
 const app = express();
 
@@ -15,3 +16,5 @@ mongoose.connect(process.env.MONGO_URI)
 .catch((error) => {
 console.log(error);
 })
+
+app.use('/store', storeRoutes);
