@@ -12,6 +12,21 @@ catch (error) {
 }
 }
 
+const getProductDetails = async (req, res) => {
+    const id = mongoose.Types.ObjectId(req.params.id.trim());
+
+    if(!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(400).json({error: "No such workout with given Id"});
+    }
+    const product = await Product.findById(id);
+
+    if(!product) {
+        return res.status(400).json({error: "Product could not be found"})
+    }
+    res.status(200).json(product)
+}
+
 module.exports = {
-    getAllProducts
+    getAllProducts,
+    getProductDetails
 }
