@@ -18,7 +18,11 @@ function App() {
     
               <Route path="/products" element={<Products/>}></Route>
     
-              <Route path="/products/product/:id/" element={<ProductDetails />}></Route>
+              <Route path="/products/product/:id/" element={<ProductDetails />}>
+                <Route path="" element={<ProductDetailNutrition />}></Route>
+    
+                <Route path="storage" element={<ProductDetailStorage />}></Route>
+              </Route>
     
           </Routes>
           </div>
