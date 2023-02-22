@@ -249,3 +249,62 @@ input:focus {
 .nav-item a.active {
   font-weight: bold;
 }
+
+/* TABS */
+.tabs {
+  margin: 0 0 40px 0;
+  border-bottom: var(--neutral-4) solid 1px;
+}
+
+.tabs ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  padding-bottom: 10px;
+}
+
+.tabs li {
+  display: inline-block;
+}
+
+.tabs a {
+  text-decoration: none;
+  padding-bottom: 10px;
+  color: var(--black);
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.tabs .tab-active {
+  border-bottom: 7px solid var(--primary-1);
+}
+
+/* Pages */
+.home-layout {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  place-items: center;
+  grid-gap: 20px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.about-layout {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-gap: 20px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.products-layout {
+  padding-top: 40px;
+  padding-bottom: 80px;
+}
+
+.product-details-layout {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-gap: 40px;
+}
