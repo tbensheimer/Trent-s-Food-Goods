@@ -3,6 +3,9 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Navbar from "./components/Navbar";
 import Products from './pages/Products';
+import ProductDetailNutrition from "./pages/ProductDetailNutrition";
+import ProductDetailStorage from "./pages/ProductDetailStorage";
+import Cart from "./pages/Cart";
 
 function App() {
   
@@ -23,6 +26,9 @@ function App() {
     
                 <Route path="storage" element={<ProductDetailStorage />}></Route>
               </Route>
+
+              <Route path="/cart" element={<Cart />}></Route>
+
     
           </Routes>
           </div>
