@@ -1,3 +1,5 @@
+import { useSelector } from "react-redux";
+import { cartTotalPriceSelector } from "../redux/store";
 import {loadStripe} from "@stripe/stripe-js";
 import { useState } from "react";
 import Button from "../components/Button";
@@ -5,8 +7,8 @@ import Input from "../components/Input";
 import Loader from "../components/Loader";
 
 export default function Cart() {
-    const cart = ""; //add redux state management
-      const totalPrice = "";
+    const cart = useSelector(state => state.cart);
+      const totalPrice = useSelector(cartTotalPriceSelector);
       const [email, setEmail] = useState("");
       const [isLoading, setIsLoading] = useState(false);
       const stripe = loadStripe("pk_test_51MYB9DEnTYpxrAdMC0hkUJyO6JRTcn7eOaheXtMBaAPN53RR67ZsuXnNEckIXSVGst6RvF2JA0hEQWlIQv88wSim00tuuL61sS");
@@ -108,5 +110,6 @@ export default function Cart() {
         </div>
       </div>
                 
+      
     );
   }
