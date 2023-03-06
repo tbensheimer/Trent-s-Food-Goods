@@ -1,7 +1,11 @@
 import { NavLink } from "react-router-dom";
+import {useSelector} from "react-redux";
+import { cartCountSelector } from "../redux/store";
+import useLogout from "../hooks/useLogout";
 import Button from "../components/Button";
 
 export default function Navbar() {
+const cartCount = useSelector(cartCountSelector);
 
   return (
     <nav className="navbar">
@@ -24,6 +28,12 @@ export default function Navbar() {
         <li className="nav-item">
           <NavLink className={({isActive}) => isActive ? "active" : ""} to="/products">
             Products
+          </NavLink>
+        </li>}
+
+        {user && <li>
+          <NavLink to="/cart" className="nav-item nav-cart btn btn-accent">
+            Cart ({cartCount})
           </NavLink>
         </li>}
       </ul>
