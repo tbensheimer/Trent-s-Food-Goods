@@ -1,8 +1,11 @@
 import { useOutletContext } from "react-router";
 import Button from "../components/Button";
+import { useDispatch } from "react-redux";
+import { addProduct } from "../redux/store";
 
 export default function ProductDetailNutrition() {
     const product = useOutletContext();
+    const dispatch = useDispatch();
 
     return (
         <>
@@ -32,7 +35,7 @@ export default function ProductDetailNutrition() {
             </tr>
         </tbody>
     </table>
-     <Button onClick={() => {}} outline>
+     <Button onClick={() => dispatch(addProduct(product))} outline>
      ${product.price}
    </Button>
    </>
