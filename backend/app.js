@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 require('dotenv').config();
 const storeRoutes = require("./routes/storeRoutes");
+const userRoutes = require("./routes/userRoutes");
 
 const app = express();
 
@@ -18,3 +19,5 @@ console.log(error);
 })
 
 app.use('/store', storeRoutes);
+
+app.use('/user', userRoutes);
