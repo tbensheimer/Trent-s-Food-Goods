@@ -1,16 +1,18 @@
 import {useState} from "react";
 import Input from "../components/Input";
 import Button from "../components/Button";
+import {useLogin} from "../hooks/useLogin";
 import {Link} from "react-router-dom";
 
 export default function LoginForm() {
 const [email, setEmail] = useState("");
 const [password, setPassword] = useState("");
+const {error, loading, Login} = useLogin();
 
 
 const handleFormSubmit = async (e) => {
         e.preventDefault();
-    //useLogin hook goes here
+        await Login(email, password);
 }
 
     return (
