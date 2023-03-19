@@ -1,11 +1,14 @@
 import { NavLink } from "react-router-dom";
-import {useSelector} from "react-redux";
+import {useSelector, useDispatch} from "react-redux";
 import { cartCountSelector } from "../redux/store";
 import useLogout from "../hooks/useLogout";
 import Button from "../components/Button";
 
 export default function Navbar() {
 const cartCount = useSelector(cartCountSelector);
+const user = useSelector(state => state.user);
+const dispatch = useDispatch();
+const {Logout} = useLogout();
 
   return (
     <nav className="navbar">
@@ -37,6 +40,17 @@ const cartCount = useSelector(cartCountSelector);
           </NavLink>
         </li>}
       </ul>
+
+      {!user ? 
+      <div className="navbar-user-login">
+        <NavLink className="text" to="/login" >Login</NavLink>
+      <NavLink className="text" to="/signup">Signup</NavLink>
+      </div> 
+      : 
+      <div className="navbar-user-logout">
+      <p>{user.email}</p>
+      <Button type="button" onClick={() => dispatch(Logout())}>Logout</Button>
+      </div>}
 
     </nav>
   );
