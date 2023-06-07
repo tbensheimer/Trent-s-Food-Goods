@@ -38,8 +38,18 @@ const createProduct = async (req, res) => {
     }
 }
 
+const getAdminList = async (req, res) => {
+
+}
+
+const updateAdminList = async (req, res) => {
+    
+}
+
 module.exports = {
     getAllProducts,
     getProductDetails,
-    createProduct
+    createProduct,
+    getAdminList,
+    updateAdminList
 }

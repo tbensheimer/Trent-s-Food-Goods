@@ -13,6 +13,9 @@ email: {
 password: {
     type: String,
     required: true
+},
+admin: {
+    type: Boolean
 }
 });
 
