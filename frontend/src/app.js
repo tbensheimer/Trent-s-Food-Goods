@@ -12,6 +12,8 @@ import LoginForm from "./pages/LoginForm";
 import SignupForm from "./pages/SignupForm";
 import { useEffect } from "react";
 import { login } from "./redux/store";
+import Admin from "./pages/Admin";
+import ProductDetailInfo from "./pages/ProductDetailInfo";
 
 function App() {
   const user = useSelector(state => state.user);
@@ -37,8 +39,10 @@ function App() {
     
               <Route path="/products" element={user ? <Products/> : <Navigate to="/login" />}></Route>
     
-              <Route path="/products/product/:id/" element={user ? <ProductDetails /> : <Navigate to="/login" />}>    
-                <Route path="" element={<ProductDetailNutrition />}></Route>
+              <Route path="/products/product/:id/" element={user ? <ProductDetails /> : <Navigate to="/login" />}> 
+              <Route path="" element={<ProductDetailInfo />}></Route>
+   
+                <Route path="nutrition" element={<ProductDetailNutrition />}></Route>
     
                 <Route path="storage" element={<ProductDetailStorage />}></Route>
               </Route>
@@ -49,7 +53,11 @@ function App() {
 
               <Route path="/login" element={!user ? <LoginForm /> : <Navigate to="/" />}></Route>
 
-              <Route path="/admin" element={user ? <Admin /> : <Navigate to="/login" />}></Route>
+              <Route path="/admin/" element={user ? <Admin /> : <Navigate to="/login" />}>
+                <Route path="admin-list" element={user.Admin ? <AdminList /> : <Home />}></Route>
+
+                <Route path="product-list" element={user.Admin ? <AdminProductList /> : <Home />}></Route>
+              </Route>
             </Routes>
           </div>
         </BrowserRouter>
