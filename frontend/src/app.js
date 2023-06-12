@@ -14,6 +14,7 @@ import { useEffect } from "react";
 import { login } from "./redux/store";
 import Admin from "./pages/Admin";
 import ProductDetailInfo from "./pages/ProductDetailInfo";
+import AdminProductList from "./pages/AdminProductList";
 
 function App() {
   const user = useSelector(state => state.user);
@@ -58,6 +59,8 @@ function App() {
 
                 <Route path="product-list" element={user.Admin ? <AdminProductList /> : <Home />}></Route>
               </Route>
+
+              <Route path="/edit-product/:id/" element={user.Admin ? <EditProductForm /> : <Home />}></Route>
             </Routes>
           </div>
         </BrowserRouter>

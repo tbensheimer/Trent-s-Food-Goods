@@ -43,7 +43,11 @@ const getAdminList = async (req, res) => {
 }
 
 const updateAdminList = async (req, res) => {
-    
+
+}
+
+const updateProduct = async (req, res) => {
+
 }
 
 module.exports = {
@@ -51,5 +55,6 @@ module.exports = {
     getProductDetails,
     createProduct,
     getAdminList,
-    updateAdminList
+    updateAdminList,
+    updateProduct
 }

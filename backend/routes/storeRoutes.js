@@ -1,5 +1,5 @@
 const express = require('express');
-const {getAllProducts, getProductDetails, createProduct, getAdminList, updateAdminList } = require("../controllers/storeController");
+const {getAllProducts, getProductDetails, createProduct, getAdminList, updateAdminList, updateProduct } = require("../controllers/storeController");
 const requireAuth = require("../middleware/requireAuth");
 
 const router = express.Router();
@@ -11,6 +11,8 @@ router.get('/products', getAllProducts)
 router.get('/products/product/:id', getProductDetails)
 
 router.post('/products', createProduct)
+
+router.post('/edit-product/:id', updateProduct)
 
 router.get('/admins', getAdminList)
 
