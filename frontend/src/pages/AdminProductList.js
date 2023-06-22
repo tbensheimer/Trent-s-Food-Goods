@@ -3,7 +3,7 @@ import ProductForAdmin from "../components/ProductForAdmin";
 import Loader from "../components/Loader";
 
 export default function AdminProductList() {
-    const [products, useProducts] = useState([]);
+    const [products, setProducts] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {

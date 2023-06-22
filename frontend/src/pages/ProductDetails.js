@@ -51,7 +51,7 @@ export default function ProductDetails(props) {
               </NavLink>
             </li>
             <li>
-              <NavLink className={({isActive}) => isActive ? "tab-active" : ""} to="" end>
+              <NavLink className={({isActive}) => isActive ? "tab-active" : ""} to="nutrition" end>
                 Nutrition
               </NavLink>
             </li>

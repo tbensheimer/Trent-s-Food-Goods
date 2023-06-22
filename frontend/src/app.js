@@ -4,17 +4,19 @@ import About from "./pages/About";
 import Navbar from "./components/Navbar";
 import Products from './pages/Products';
 import ProductDetails from "./pages/ProductDetails";
-import ProductDetailNutrition from "./pages/ProductDetailNutrition";
-import ProductDetailStorage from "./pages/ProductDetailStorage";
+import ProductDetailsNutrition from "./pages/ProductDetailsNutrition";
+import ProductDetailsStorage from "./pages/ProductDetailsStorage";
 import Cart from "./pages/Cart";
 import {useSelector, useDispatch} from "react-redux"
 import LoginForm from "./pages/LoginForm";
 import SignupForm from "./pages/SignupForm";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { login } from "./redux/store";
 import Admin from "./pages/Admin";
 import ProductDetailInfo from "./pages/ProductDetailInfo";
 import AdminProductList from "./pages/AdminProductList";
+import AdminList from "./pages/AdminList";
+import EditProductForm from "./pages/EditProductForm";
 
 function App() {
   const user = useSelector(state => state.user);
@@ -43,9 +45,9 @@ function App() {
               <Route path="/products/product/:id/" element={user ? <ProductDetails /> : <Navigate to="/login" />}> 
               <Route path="" element={<ProductDetailInfo />}></Route>
    
-                <Route path="nutrition" element={<ProductDetailNutrition />}></Route>
+                <Route path="nutrition" element={<ProductDetailsNutrition />}></Route>
     
-                <Route path="storage" element={<ProductDetailStorage />}></Route>
+                <Route path="storage" element={<ProductDetailsStorage />}></Route>
               </Route>
     
               <Route path="/cart" element={user ? <Cart /> : <Navigate to="/login" />}></Route>
@@ -55,12 +57,12 @@ function App() {
               <Route path="/login" element={!user ? <LoginForm /> : <Navigate to="/" />}></Route>
 
               <Route path="/admin/" element={user ? <Admin /> : <Navigate to="/login" />}>
-                <Route path="admin-list" element={user.Admin ? <AdminList /> : <Home />}></Route>
+                <Route path="admin-list" element={user && user.admin ? <AdminList /> : <Home />}></Route>
 
-                <Route path="product-list" element={user.Admin ? <AdminProductList /> : <Home />}></Route>
+                <Route path="product-list" element={user && user.admin ? <AdminProductList /> : <Home />}></Route>
               </Route>
 
-              <Route path="/edit-product/:id/" element={user.Admin ? <EditProductForm /> : <Home />}></Route>
+              <Route path="/edit-product/:id/" element={user && user.admin ? <EditProductForm /> : <Home />}></Route>
             </Routes>
           </div>
         </BrowserRouter>

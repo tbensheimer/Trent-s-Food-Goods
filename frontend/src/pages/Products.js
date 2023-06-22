@@ -35,7 +35,6 @@ export default function Products(props) {
             <Product
               key={product._id}
               details={product}
-              isEdit="false"
               />
           );
         })}

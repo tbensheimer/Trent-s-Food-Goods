@@ -1,8 +1,11 @@
+// import Loader from "../components/Loader"
+import { NavLink } from "react-router-dom"
+
 export default function Admin() {
     return (
         <div>
     <div className="admin-layout">
-      {isLoading && <Loader />}
+      {/* {isLoading && <Loader />} */}
       </div>
       <div>
         <div className="tabs">

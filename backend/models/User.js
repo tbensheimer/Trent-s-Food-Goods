@@ -42,7 +42,7 @@ const salt = await bcrypt.genSalt(12);
 
 const hashed = await bcrypt.hash(password, salt);
 
-const user = await this.create({email, password: hashed});
+const user = await this.create({email, password: hashed, admin: false});
 
 if(user) {
     return user;

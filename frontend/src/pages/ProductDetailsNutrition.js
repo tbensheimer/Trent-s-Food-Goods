@@ -3,7 +3,7 @@ import Button from "../components/Button";
 import { useDispatch } from "react-redux";
 import { addProduct } from "../redux/store";
 
-export default function ProductDetailNutrition() {
+export default function ProductDetailsNutrition() {
     const product = useOutletContext();
     const dispatch = useDispatch();
 
