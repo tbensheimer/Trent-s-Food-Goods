@@ -39,6 +39,12 @@ const {Logout} = useLogout();
             Cart ({cartCount})
           </NavLink>
         </li>}
+
+        {user && user.admin && <li className="nav-item">
+          <NavLink to="/admin/" className={({isActive}) => isActive ? "active" : ""}>
+            Admin
+          </NavLink>
+        </li>}
       </ul>
 
       {!user ? 

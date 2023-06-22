@@ -57,9 +57,9 @@ function App() {
               <Route path="/login" element={!user ? <LoginForm /> : <Navigate to="/" />}></Route>
 
               <Route path="/admin/" element={user ? <Admin /> : <Navigate to="/login" />}>
-                <Route path="admin-list" element={user && user.admin ? <AdminList /> : <Home />}></Route>
+                <Route path="" element={<AdminList />}></Route>
 
-                <Route path="product-list" element={user && user.admin ? <AdminProductList /> : <Home />}></Route>
+                <Route path="product-list" element={<AdminProductList />}></Route>
               </Route>
 
               <Route path="/edit-product/:id/" element={user && user.admin ? <EditProductForm /> : <Home />}></Route>

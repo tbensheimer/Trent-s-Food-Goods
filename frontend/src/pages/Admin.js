@@ -1,27 +1,20 @@
-// import Loader from "../components/Loader"
 import { NavLink } from "react-router-dom"
+import { Outlet } from "react-router-dom"
 
 export default function Admin() {
     return (
         <div>
     <div className="admin-layout">
-      {/* {isLoading && <Loader />} */}
       </div>
       <div>
         <div className="tabs">
           <ul>
             <li>
               <NavLink className={({isActive}) => isActive ? "tab-active" : ""} to="" end>
-                Admin Info
+                Admin List
               </NavLink>
             </li>
-            <li>
-              <NavLink
-                className={({isActive}) => isActive ? "tab-active" : ""}
-                to="admin-list">
-                Manage Admin List
-              </NavLink>
-            </li>
+    
             <li>
               <NavLink
                 className={({isActive}) => isActive ? "tab-active" : ""}
@@ -30,6 +23,7 @@ export default function Admin() {
               </NavLink>
             </li>
           </ul>
+          <Outlet />
         </div>
       </div>
     </div>

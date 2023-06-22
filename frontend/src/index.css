@@ -534,6 +534,16 @@ div.error {
   padding-top: 30px;
 }
 
+/* admin page */
+
+.admin-layout {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-gap: 40px;
+}
+
 @media (max-width: 1200px) {
   .navbar-user-logout {
     flex-direction: column;
