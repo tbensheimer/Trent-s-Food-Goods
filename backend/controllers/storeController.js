@@ -38,14 +38,6 @@ const createProduct = async (req, res) => {
     }
 }
 
-const getAdminList = async (req, res) => {
-
-}
-
-const updateAdminList = async (req, res) => {
-
-}
-
 const updateProduct = async (req, res) => {
 
 }
@@ -54,7 +46,5 @@ module.exports = {
     getAllProducts,
     getProductDetails,
     createProduct,
-    getAdminList,
-    updateAdminList,
     updateProduct
 }

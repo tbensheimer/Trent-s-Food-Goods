@@ -7,7 +7,6 @@ export default function ProductDetails(props) {
   const [product, setProduct] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const params = useParams();
-  console.log(params.id)
 
   useEffect(() => {
  
