@@ -41,7 +41,7 @@ const loginUser = async (req, res) => {
 
 const getUserList = async (req, res) => {
     try {
-        const users = await User.find();
+        const users = await User.find().sort({"admin": -1});
         
         res.status(200).json({users});
         } 
@@ -51,11 +51,9 @@ const getUserList = async (req, res) => {
 }
 
 const updateUserList = async (req, res) => {
-
     const id = mongoose.Types.ObjectId(req.body);
 
     try {
-
     let user = await User.findById(id);
 
     if(user) {
@@ -63,15 +61,13 @@ const updateUserList = async (req, res) => {
 
         await User.findByIdAndUpdate(id, user);
 
-        const users = await User.find();
+        const users = await User.find().sort({"admin": -1});
 
         res.status(200).json({users});
     }
-
     } catch (error) {
         res.status(400).json({error: error.message});
     }
-
 }
 
 module.exports = {loginUser, signupUser, getUserList, updateUserList};

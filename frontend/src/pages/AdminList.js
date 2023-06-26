@@ -43,11 +43,11 @@ const ChangeAdmin = async (id) => {
 }
 
     return (
-        <div>
-            {success && <div>{success}</div>}
-            {error && <div>{error}</div>}
+        <div className="admin-list-layout">
+            {success && <div className="success">{success}</div>}
+            {error && <div className="error">{error}</div>}
             {users && users.map(user => {
-                return <div key={user.email}>{user.email} <input onChange={() => ChangeAdmin(user._id)} checked={user.admin} type="checkbox" /></div>
+                return <div className="user" key={user.email}>{user.email} <span>{user.admin && <span className="user-admin">Admin</span>} <input onChange={() => ChangeAdmin(user._id)} checked={user.admin} type="checkbox" /></span></div>
             })}
         </div>
     )

@@ -497,7 +497,6 @@ div.error {
   font-size: 18px;
   border: 1px solid white;
 }
-
 .table-cart {
   text-align: center;
 }
@@ -542,6 +541,38 @@ div.error {
   display: grid;
   grid-template-columns: auto 1fr;
   grid-gap: 40px;
+}
+
+.user {
+background-color: white;
+border-radius: 20px;
+margin: 15px;
+padding: 15px;
+display: flex;
+justify-content: space-between;
+width: 70%;
+font-weight: bold;
+font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.admin-list-layout {
+  margin: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-admin {
+  color: var(--accent-1);
+}
+
+.success {
+  color: var(--primary-1);
+  font-weight: bold;
+  font-size: large;
+  display: flex;
+  justify-content: center;
 }
 
 @media (max-width: 1200px) {
