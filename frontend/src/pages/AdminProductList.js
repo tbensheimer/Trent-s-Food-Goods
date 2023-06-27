@@ -26,7 +26,7 @@ export default function AdminProductList() {
 
 
     return (
-        <div>
+        <div className="admin-product-list-layout">
             {isLoading && <Loader />}
            {products && products.map(product => {
             return <ProductForAdmin

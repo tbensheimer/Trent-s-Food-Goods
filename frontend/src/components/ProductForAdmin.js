@@ -23,16 +23,18 @@ export default function ProductForAdmin(props) {
     }
 
     return (
-        <div className="admin-product-list">
+        <div className="product margin">
             {success && <div className="success-alert">{success}</div> }
             <div className="product-image-container">
-            <img src={src} width="100" height="100" className="product-image" alt={details.name} />
+            <img src={src} width="70" height="70" className="product-image" alt={details.name} />
             </div>
+            <div className="product-info">
         <h3>{details.name}</h3>
         <p>{details.description}</p>
+        </div>
         <div className="action-btns">
-        <Link to={`/edit-product/${details._id}`}><Button outline className="edit">Edit</Button></Link>
-        <Button onClick={removeProduct} outline className="delete">Remove</Button>
+        <Link to={`/edit-product/${details._id}`}><Button outline className="product-edit">Edit</Button></Link>
+        <Button onClick={removeProduct} outline className="product-delete">Remove</Button>
         </div>
         </div>
     )    

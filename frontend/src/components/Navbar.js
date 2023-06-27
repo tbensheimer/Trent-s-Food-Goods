@@ -3,6 +3,7 @@ import {useSelector, useDispatch} from "react-redux";
 import { cartCountSelector } from "../redux/store";
 import useLogout from "../hooks/useLogout";
 import Button from "../components/Button";
+import Logo from "../assets/TFlogo.jpg";
 
 export default function Navbar() {
 const cartCount = useSelector(cartCountSelector);
@@ -13,7 +14,7 @@ const {Logout} = useLogout();
   return (
     <nav className="navbar">
       <NavLink to="/" className="nav-brand">
-        Trent's Food Goods
+        <img src={Logo} alt="TF store logo" height="80" width="80" />
       </NavLink>
 
       <ul>

@@ -575,6 +575,32 @@ font-family: Georgia, 'Times New Roman', Times, serif;
   justify-content: center;
 }
 
+.product-edit {
+  background-color: lightgray;
+  padding: 5px 10px;
+  color: gray;
+  border-color:gray;
+  font-size: 14px;
+  margin: 5px;
+}
+
+.product-edit:hover {
+  background-color: gray;
+  color: white;
+}
+
+.admin-product-list-layout {
+    margin: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.margin {
+  margin: 10px;
+}
+
 @media (max-width: 1200px) {
   .navbar-user-logout {
     flex-direction: column;
