@@ -16,7 +16,7 @@ const getProductDetails = async (req, res) => {
     const id = mongoose.Types.ObjectId(req.params.id.trim());
 
     if(!mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(400).json({error: "No such workout with given Id"});
+        return res.status(400).json({error: "No such product with given Id"});
     }
     const product = await Product.findById(id);
 
@@ -40,11 +40,32 @@ const createProduct = async (req, res) => {
 
 const updateProduct = async (req, res) => {
 
+
+
+}
+
+const removeProduct = async (req, res) => {
+    const id = mongoose.Types.ObjectId(req.body.id.trim());
+
+    if(!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(400).json({error: "No such product with given Id"});
+    }
+
+    try {
+    const product = await Product.findByIdAndRemove(id);
+
+    if(product) {
+        res.status(200).json({success: "Product removed successfully!"})
+    } 
+} catch (error) {
+    res.status(400).json({error: error.message});
+}
 }
 
 module.exports = {
     getAllProducts,
     getProductDetails,
     createProduct,
-    updateProduct
+    updateProduct,
+    removeProduct
 }

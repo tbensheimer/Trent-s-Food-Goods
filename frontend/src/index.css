@@ -584,6 +584,10 @@ font-family: Georgia, 'Times New Roman', Times, serif;
   margin: 5px;
 }
 
+.product-delete {
+  margin: 15px;
+}
+
 .product-edit:hover {
   background-color: gray;
   color: white;
@@ -599,6 +603,11 @@ font-family: Georgia, 'Times New Roman', Times, serif;
 
 .margin {
   margin: 10px;
+}
+
+.action-btns {
+  display: flex;
+  align-items: end;
 }
 
 @media (max-width: 1200px) {
