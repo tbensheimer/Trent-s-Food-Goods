@@ -3,7 +3,7 @@ import { Link, NavLink, useParams, Outlet} from "react-router-dom";
 import Button from "../components/Button";
 import Loader from "../components/Loader";
 
-export default function ProductDetails(props) {
+export default function ProductDetails() {
   const [product, setProduct] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const params = useParams();
