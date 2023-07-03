@@ -179,13 +179,20 @@ a:hover {
   background-color: white;
 }
 
+.textarea {
+  min-width: 380px !important;
+  width: 90% !important;
+  display: flex;
+  flex-direction: column;
+}
+
 ::placeholder {
   color: var(--neutral-4);
 }
 
 input:focus {
   outline: none;
-  border-left: 7px solid var(--primary-1);
+  border-left: 7px solid var(--primary-1)  !important;
 }
 
 div.error {

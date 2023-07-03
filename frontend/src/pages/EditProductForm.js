@@ -1,9 +1,9 @@
 import { useParams } from "react-router"
 import Loader from "../components/Loader";
 import { useState, useEffect } from "react";
+import Input from "../components/Input"
 
 export default function EditProductForm() {
-    const [product, setProduct] = useState({});
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [image, setImage] = useState(null);
@@ -24,17 +24,16 @@ export default function EditProductForm() {
           const data = await response.json();
   
           if(response.ok) {
-              setProduct(data);
               setName(data.name);
-          setDescription(product.description);
-          setPrice(product.price);
-          setImage(product.image);
-          setStripeId(product.price_id);
-          setFat(product.fat);
-          setSalt(product.salt);
-          setCarbs(product.carbs);
-          setProtein(product.protein);
-          setStorage(product.storage);
+              setDescription(data.description);
+              setPrice(data.price);
+              setImage(data.image);
+              setStripeId(data.price_id);
+              setFat(data.fat);
+              setProtein(data.protein);
+              setSalt(data.salt);
+              setCarbs(data.carbs);
+              setStorage(data.storage);
           }
           else {
               console.log("error in getting details");
@@ -48,30 +47,42 @@ export default function EditProductForm() {
     return (
         <div className="edit-product-form">
             {isLoading && <Loader />}
-            {product && <>
-            <input type="text" value={product} onChange={e => setName(e.target.value)} />
+            {name && <>
+            <label for="name">Name:</label>
+            <Input id="name" type="text" value={name} onChange={e => setName(e.target.value)} />
 
-            <textarea value={description} onChange={e => setDescription(e.target.value)}></textarea>
+            <div>
+            <label for="description">Description:</label>
+            <textarea className="input textarea" id="description" value={description} onChange={e => setDescription(e.target.value)}></textarea>
+            </div>
 
-            <input type="number" value={price} onChange={e => setPrice(e.target.value)} />
+            <label for="price">Price:</label>
+            <Input id="price" type="number" value={price} onChange={e => setPrice(e.target.value)} />
 
-            <input type="string" value={image} onChange={e => setImage(e.target.value)} />
+            <label for="image">Image:</label>
+            <Input type="string" value={image} onChange={e => setImage(e.target.value)} />
 
-            <input type="text" value={stripeId} onChange={e => setStripeId(e.target.value)} />
+            <label for="stripe">Price Id (from stripe, paypal, etc):</label>
+            <Input id="stripe" type="text" value={stripeId} onChange={e => setStripeId(e.target.value)} />
 
-            <input type="text" value={fat} onChange={e => setFat(e.target.value)} />
+            <label for="fat">Fat:</label>
+            <Input id="fat" type="text" value={fat} onChange={e => setFat(e.target.value)} />
 
-            <input type="text" value={salt} onChange={e => setSalt(e.target.value)} />
+            <label for="salt">Salt:</label>
+            <Input id="salt" type="text" value={salt} onChange={e => setSalt(e.target.value)} />
 
-            <input type="text" value={protein} onChange={e => setProtein(e.target.value)} />
+            <label for="protien">Protein:</label>
+            <Input id="protein" type="text" value={protein} onChange={e => setProtein(e.target.value)} />
 
-            <input type="text" value={carbs} onChange={e => setCarbs(e.target.value)} />
+            <label for="carbs">Carbs:</label>
+            <Input id="carbs" type="text" value={carbs} onChange={e => setCarbs(e.target.value)} />
 
-            <input type="text" value={storage} onChange={e => setStorage(e.target.value)} />
+            <div className="div">
+            <label for="storage">Storage:</label>
+            <textarea className="input textarea" id="storage" type="text" value={storage} onChange={e => setStorage(e.target.value)}></textarea>
+            </div>
 </>
             }
-
-
         </div>
     )
 }
