@@ -2,11 +2,13 @@ import { useParams } from "react-router"
 import Loader from "../components/Loader";
 import { useState, useEffect } from "react";
 import Input from "../components/Input"
+import Button from "../components/Button";
 
 export default function EditProductForm() {
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [image, setImage] = useState(null);
+    const [imageError, setImageError] = useState(null);
     const [price, setPrice] = useState("");
     const [stripeId, setStripeId] = useState("");
     const [protein, setProtein] = useState({});
@@ -44,6 +46,48 @@ export default function EditProductForm() {
           setIsLoading(false);
     }, []);
 
+    const handleFileChange = async (e) => {
+        setImage(null);
+
+        let file = e.target.files[0];  //selects first file if multiple uploaded
+
+        if(!file) {
+            setImageError("Please select a file");
+            return;
+        }
+
+        if(!file.type.includes('image')) {
+            setImageError("File type must be an image");
+            return;
+        }
+
+        if(file.size > 100000) {
+            setImageError("File size must be less than 100Kb");
+            return;
+        }
+
+        const base64 = await convertToBase64(file);
+        setImage(base64);
+        setImageError(null);
+    }
+
+    const convertToBase64 = (file) => {
+        return new Promise((resolve, reject) => {
+            const fileReader = new FileReader();
+            fileReader.readAsDataURL(file);
+            fileReader.onload = () => {
+                resolve(fileReader.result);
+            }
+            fileReader.onerror = (error) => {
+                reject(error);
+            }
+        })
+    }
+
+    const SaveChanges = () => {
+        
+    }
+
     return (
         <div className="edit-product-form">
             {isLoading && <Loader />}
@@ -60,8 +104,9 @@ export default function EditProductForm() {
             <Input id="price" type="number" value={price} onChange={e => setPrice(e.target.value)} />
 
             <label for="image">Image:</label>
-            <Input type="string" value={image} onChange={e => setImage(e.target.value)} />
-
+            <input required type="file" onChange={handleFileChange}/>
+                {image && <div className="img-container">Preview:<img src={image} className="product-pic" alt="food pic" /></div>}
+                {imageError && <div className="error">{imageError}</div>}
             <label for="stripe">Price Id (from stripe, paypal, etc):</label>
             <Input id="stripe" type="text" value={stripeId} onChange={e => setStripeId(e.target.value)} />
 
@@ -81,6 +126,8 @@ export default function EditProductForm() {
             <label for="storage">Storage:</label>
             <textarea className="input textarea" id="storage" type="text" value={storage} onChange={e => setStorage(e.target.value)}></textarea>
             </div>
+
+            <Button type="button" onClick={SaveChanges}>Save</Button>
 </>
             }
         </div>
