@@ -27,11 +27,14 @@ const getProductDetails = async (req, res) => {
 }
 
 const createProduct = async (req, res) => {
-    const {title, description, price, image} = req.body;
-
+    const {name, description, price, stripeId, image, fat, protein, salt, carbs, storage } = req.body;
+    console.log(name, description, price, stripeId, image, fat, protein, salt, carbs, storage);
     try {
-        const product = await Product.create({name: title, description, price, image})
-        res.status(200).json(product);
+        const product = await Product.create({name, description, price, stripeId, image, fat, protein, salt, carbs, storage});
+
+        if(product) {
+        res.status(200).json({success: true, _id: product._id});
+        }
     }
     catch (error) {
         res.status(400).json({error: error.message})
@@ -39,7 +42,32 @@ const createProduct = async (req, res) => {
 }
 
 const updateProduct = async (req, res) => {
+    const {id, name, description, price, stripeId, image, fat, protein, salt, carbs, storage } = req.body;
 
+    try {
+        const product = await Product.findById(id);
+
+        product.name = name;
+        product.description = description;
+        product.price = price;
+        product.price_id = stripeId;
+        product.image = image;
+        product.fat = fat;
+        product.protein = protein;
+        product.salt = salt;
+        product.carbs = carbs;
+        product.storage = storage;
+
+        const updatedProduct = await Product.findByIdAndUpdate(id, product);
+
+        if(updatedProduct) {
+            res.status(200).json({success: true, _id: product._id});
+        }
+
+    }
+    catch (error) {
+        res.status(400).json({error: error.message});
+    }
 
 
 }

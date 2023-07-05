@@ -28,7 +28,6 @@ const Login = async(email, password) => {
     if(response.ok) {
         setLoading(false);
         localStorage.setItem("user", JSON.stringify(data));
-        console.log(data);
         dispatch(login(data));
     }
 }

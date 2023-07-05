@@ -21,7 +21,7 @@ const productSchema = new Schema({
     },
     price_id: {
         type: String,
-        required: false,
+        required: true,
     },
     protein: {
         type: Number,

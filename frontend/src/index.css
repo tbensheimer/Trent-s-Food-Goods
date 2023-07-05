@@ -560,6 +560,9 @@ justify-content: space-between;
 width: 70%;
 font-weight: bold;
 font-family: Georgia, 'Times New Roman', Times, serif;
+border-left: 5px solid var(--accent-1);
+border-bottom: 3px solid var(--accent-1);
+
 }
 
 .admin-list-layout {
@@ -624,10 +627,18 @@ font-family: Georgia, 'Times New Roman', Times, serif;
 
 .img-container {
   width: 160px;
+  margin-bottom: 15px;
 }
 
 .edit-product-form {
   padding: 20px;
+  margin: 15px;
+  border-radius: 15px;
+  box-shadow: 0px 0px 5px black;
+}
+
+label, .bold {
+  font-weight: bold;
 }
 
 

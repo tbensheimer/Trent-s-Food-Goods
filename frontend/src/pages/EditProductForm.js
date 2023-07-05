@@ -3,29 +3,33 @@ import Loader from "../components/Loader";
 import { useState, useEffect } from "react";
 import Input from "../components/Input"
 import Button from "../components/Button";
+import { Link } from "react-router-dom";
 
 export default function EditProductForm() {
+    const [id, setId] = useState(0);
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [image, setImage] = useState(null);
     const [imageError, setImageError] = useState(null);
     const [price, setPrice] = useState("");
     const [stripeId, setStripeId] = useState("");
-    const [protein, setProtein] = useState({});
-    const [fat, setFat] = useState({});
-    const [carbs, setCarbs] = useState({});
-    const [salt, setSalt] = useState({});
-    const [storage, setStorage] = useState({});
+    const [protein, setProtein] = useState("");
+    const [fat, setFat] = useState("");
+    const [carbs, setCarbs] = useState("");
+    const [salt, setSalt] = useState("");
+    const [storage, setStorage] = useState("");
     const [isLoading, setIsLoading] = useState(true);
+    const [success, setSuccess] = useState(null);
     const params = useParams();
   
     useEffect(() => {
-   
+    
       const fetchDetails = async () => {
           const response = await fetch(`/store/products/product/${params.id}`);
           const data = await response.json();
   
           if(response.ok) {
+              setId(data._id);
               setName(data.name);
               setDescription(data.description);
               setPrice(data.price);
@@ -41,9 +45,11 @@ export default function EditProductForm() {
               console.log("error in getting details");
           }
       }
-  
-          fetchDetails();
-          setIsLoading(false);
+
+      if(params.Id !== 0) {
+        fetchDetails();
+      }
+      setIsLoading(false);
     }, []);
 
     const handleFileChange = async (e) => {
@@ -84,14 +90,52 @@ export default function EditProductForm() {
         })
     }
 
-    const SaveChanges = () => {
-        
+    const SaveChanges = async () => {
+        let response;
+
+        if(id === 0) {
+
+            response = await fetch(`/store/products`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({name, description, image: "test", price, stripeId, protein, fat, carbs, salt, storage})
+            });        
+        }
+        else {
+            response = await fetch(`/store/edit-product/${id}`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({id, name, description, image, price, stripeId, protein, fat, carbs, salt, storage})
+            });
+        }
+
+        const data = await response.json();
+
+        if(response.ok) {
+            if(data.success) {
+
+                if(id === 0) {
+                setId(data._id);
+                setSuccess("Successfully created product!");
+                } 
+                else {
+                setSuccess("Successfully saved changes!");
+                }
+            }
+        }
     }
 
     return (
+        <>
+        <Link to="/admin/product-list"><Button outline className="product-details">Back</Button></Link>
+
         <div className="edit-product-form">
             {isLoading && <Loader />}
-            {name && <>
+            
             <label for="name">Name:</label>
             <Input id="name" type="text" value={name} onChange={e => setName(e.target.value)} />
 
@@ -105,8 +149,11 @@ export default function EditProductForm() {
 
             <label for="image">Image:</label>
             <input required type="file" onChange={handleFileChange}/>
-                {image && <div className="img-container">Preview:<img src={image} className="product-pic" alt="food pic" /></div>}
+                {image && <div className="img-container"><span className="bold">Preview:</span><img src={image} className="product-pic" alt="food pic" /></div>}
                 {imageError && <div className="error">{imageError}</div>}
+                <br/>
+                <br/>
+
             <label for="stripe">Price Id (from stripe, paypal, etc):</label>
             <Input id="stripe" type="text" value={stripeId} onChange={e => setStripeId(e.target.value)} />
 
@@ -127,9 +174,9 @@ export default function EditProductForm() {
             <textarea className="input textarea" id="storage" type="text" value={storage} onChange={e => setStorage(e.target.value)}></textarea>
             </div>
 
-            <Button type="button" onClick={SaveChanges}>Save</Button>
-</>
-            }
+                {success && <div className="success">{success}</div>}
+            <Button type="button" onClick={SaveChanges}>{id === 0 ? "Create" : "Save"}</Button>
         </div>
+        </>
     )
 }

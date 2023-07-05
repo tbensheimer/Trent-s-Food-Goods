@@ -1,6 +1,8 @@
 import {useState, useEffect } from "react";
 import ProductForAdmin from "../components/ProductForAdmin";
 import Loader from "../components/Loader";
+import { Link } from "react-router-dom";
+import Button from "../components/Button";
 
 export default function AdminProductList() {
     const [products, setProducts] = useState([]);
@@ -28,6 +30,7 @@ export default function AdminProductList() {
     return (
         <div className="admin-product-list-layout">
             {isLoading && <Loader />}
+            <Link to="/edit-product/0"><Button>Create Product</Button></Link>
            {products && products.map(product => {
             return <ProductForAdmin
             key={product._id}
