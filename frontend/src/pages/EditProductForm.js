@@ -92,15 +92,14 @@ export default function EditProductForm() {
 
     const SaveChanges = async () => {
         let response;
-
         if(id === 0) {
 
-            response = await fetch(`/store/products`, {
+            response = await fetch(`/store/create-product`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({name, description, image: "test", price, stripeId, protein, fat, carbs, salt, storage})
+                body: JSON.stringify({name, description, image, price, stripeId, protein, fat, carbs, salt, storage})
             });        
         }
         else {
@@ -149,9 +148,9 @@ export default function EditProductForm() {
 
             <label for="image">Image:</label>
             <input required type="file" onChange={handleFileChange}/>
+                <br/>
                 {image && <div className="img-container"><span className="bold">Preview:</span><img src={image} className="product-pic" alt="food pic" /></div>}
                 {imageError && <div className="error">{imageError}</div>}
-                <br/>
                 <br/>
 
             <label for="stripe">Price Id (from stripe, paypal, etc):</label>

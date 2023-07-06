@@ -10,7 +10,7 @@ router.get('/products', getAllProducts)
 
 router.get('/products/product/:id', getProductDetails)
 
-router.post('/products', createProduct)
+router.post('/create-product', createProduct)
 
 router.post('/edit-product/:id', updateProduct)
 

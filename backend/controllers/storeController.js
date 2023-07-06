@@ -28,9 +28,8 @@ const getProductDetails = async (req, res) => {
 
 const createProduct = async (req, res) => {
     const {name, description, price, stripeId, image, fat, protein, salt, carbs, storage } = req.body;
-    console.log(name, description, price, stripeId, image, fat, protein, salt, carbs, storage);
     try {
-        const product = await Product.create({name, description, price, stripeId, image, fat, protein, salt, carbs, storage});
+        const product = await Product.create({name, description, price, price_id: stripeId, image, fat, protein, salt, carbs, storage});
 
         if(product) {
         res.status(200).json({success: true, _id: product._id});
