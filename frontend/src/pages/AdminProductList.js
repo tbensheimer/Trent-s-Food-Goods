@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import Button from "../components/Button";
 
 export default function AdminProductList() {
-    const [products, setProducts] = useState([]);
+    const [products, setProducts] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
@@ -26,15 +26,21 @@ export default function AdminProductList() {
         fetchProducts();
     },[])
 
+    const removeProductAfterDelete = (productId) => {
+        const filteredProducts = products.filter(product => product._id !== productId);
+        setProducts(filteredProducts);
+    }
+
 
     return (
         <div className="admin-product-list-layout">
             {isLoading && <Loader />}
-            <Link to="/edit-product/0"><Button>Create Product</Button></Link>
+            {products && <Link to="/edit-product/0" className="create-product-btn"><Button>Create Product</Button></Link>}
            {products && products.map(product => {
             return <ProductForAdmin
             key={product._id}
             details={product}
+            removeProductAfterDelete={removeProductAfterDelete}
          />
            })
         }

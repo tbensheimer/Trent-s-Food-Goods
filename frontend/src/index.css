@@ -27,6 +27,11 @@
 body {
   background-color: var(--neutral-5);
   margin: 0;
+  min-height: 100vh;
+}
+
+#root {
+  min-height: 100vh;
 }
 
 h1 {
@@ -385,6 +390,7 @@ div.error {
   border-radius: 25px;
   display: grid;
   grid-template-columns: auto 1fr auto;
+  border-left: 5px solid var(--accent-1);
 }
 
 
@@ -561,7 +567,6 @@ width: 70%;
 font-weight: bold;
 font-family: Georgia, 'Times New Roman', Times, serif;
 border-left: 5px solid var(--accent-1);
-border-bottom: 3px solid var(--accent-1);
 
 }
 
@@ -641,6 +646,14 @@ label, .bold {
   font-weight: bold;
 }
 
+.create-product-btn {
+  align-self: start;
+  margin-top: 15px;
+}
+
+.admin-product-btns {
+  align-self: end;
+}
 
 @media (max-width: 1200px) {
   .navbar-user-logout {

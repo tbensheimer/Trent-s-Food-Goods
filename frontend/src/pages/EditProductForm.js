@@ -23,7 +23,6 @@ export default function EditProductForm() {
     const params = useParams();
   
     useEffect(() => {
-    
       const fetchDetails = async () => {
           const response = await fetch(`/store/products/product/${params.id}`);
           const data = await response.json();
@@ -45,8 +44,7 @@ export default function EditProductForm() {
               console.log("error in getting details");
           }
       }
-
-      if(params.Id !== 0) {
+      if(params.id !== "0") {
         fetchDetails();
       }
       setIsLoading(false);
@@ -135,41 +133,41 @@ export default function EditProductForm() {
         <div className="edit-product-form">
             {isLoading && <Loader />}
             
-            <label for="name">Name:</label>
+            <label htmlFor="name">Name:</label>
             <Input id="name" type="text" value={name} onChange={e => setName(e.target.value)} />
 
             <div>
-            <label for="description">Description:</label>
+            <label htmlFor="description">Description:</label>
             <textarea className="input textarea" id="description" value={description} onChange={e => setDescription(e.target.value)}></textarea>
             </div>
 
-            <label for="price">Price:</label>
+            <label htmlFor="price">Price:</label>
             <Input id="price" type="number" value={price} onChange={e => setPrice(e.target.value)} />
 
-            <label for="image">Image:</label>
+            <label htmlFor="image">Image:</label>
             <input required type="file" onChange={handleFileChange}/>
                 <br/>
                 {image && <div className="img-container"><span className="bold">Preview:</span><img src={image} className="product-pic" alt="food pic" /></div>}
                 {imageError && <div className="error">{imageError}</div>}
                 <br/>
 
-            <label for="stripe">Price Id (from stripe, paypal, etc):</label>
+            <label htmlFor="stripe">Price Id (from stripe, paypal, etc):</label>
             <Input id="stripe" type="text" value={stripeId} onChange={e => setStripeId(e.target.value)} />
 
-            <label for="fat">Fat:</label>
+            <label htmlFor="fat">Fat:</label>
             <Input id="fat" type="text" value={fat} onChange={e => setFat(e.target.value)} />
 
-            <label for="salt">Salt:</label>
+            <label htmlFor="salt">Salt:</label>
             <Input id="salt" type="text" value={salt} onChange={e => setSalt(e.target.value)} />
 
-            <label for="protien">Protein:</label>
+            <label htmlFor="protien">Protein:</label>
             <Input id="protein" type="text" value={protein} onChange={e => setProtein(e.target.value)} />
 
-            <label for="carbs">Carbs:</label>
+            <label htmlFor="carbs">Carbs:</label>
             <Input id="carbs" type="text" value={carbs} onChange={e => setCarbs(e.target.value)} />
 
             <div className="div">
-            <label for="storage">Storage:</label>
+            <label htmlFor="storage">Storage:</label>
             <textarea className="input textarea" id="storage" type="text" value={storage} onChange={e => setStorage(e.target.value)}></textarea>
             </div>
 

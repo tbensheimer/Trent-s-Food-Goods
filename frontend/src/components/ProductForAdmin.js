@@ -5,9 +5,7 @@ import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 
 export default function ProductForAdmin(props) {
-    const {details} = props;
-    let src = details.image;
-    const [success, setSuccess] = useState(null);
+    const {details, removeProductAfterDelete} = props;
 
     const deleteAlert = () => {
         confirmAlert({
@@ -37,28 +35,28 @@ export default function ProductForAdmin(props) {
         const data = await response.json();
 
         if(response.ok) {
-            setSuccess(data.success);
-        }
-        else {
-            setSuccess(null);
+            removeProductAfterDelete(details._id);
         }
     }
 
     return (<>
-        {success && <div className="success-alert">{success}</div> }
-        <div className="product margin">
-            <div className="product-image-container">
-            <img src={src} width="70" height="70" className="product-image" alt={details.name} />
-            </div>
-            <div className="product-info">
+<div className="product margin">
+      <div className="product-image-container">
+        <Link to={`/products/product/${details._id}`}>
+          <img src={details.image} width="100" height="100" className="product-image" alt={details.name} />
+        </Link>
+      </div>
+      <div className="product-info">
         <h3>{details.name}</h3>
         <p>{details.description}</p>
+      </div>
+      <div className="product-checkout">
+        <div className="product-btn-div">
+        <Link className="admin-product-btns" to={`/edit-product/${details._id}`}><Button outline className="product-edit">Edit</Button></Link>
+        <Button onClick={deleteAlert} outline className="product-delete admin-product-btns">Remove</Button>
         </div>
-        <div className="action-btns">
-        <Link to={`/edit-product/${details._id}`}><Button outline className="product-edit">Edit</Button></Link>
-        <Button onClick={deleteAlert} outline className="product-delete">Remove</Button>
-        </div>
-        </div>
+      </div>
+    </div>
         </>
     )    
 } 
