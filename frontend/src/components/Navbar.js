@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import {useSelector, useDispatch} from "react-redux";
 import { cartCountSelector } from "../redux/store";
 import useLogout from "../hooks/useLogout";
@@ -41,11 +41,11 @@ const {Logout} = useLogout();
           </NavLink>
         </li>}
 
-        {user && user.admin && <li className="nav-item">
+        {/* {user && user.admin && <li className="nav-item">
           <NavLink to="/admin/" className={({isActive}) => isActive ? "active" : ""}>
             Admin
           </NavLink>
-        </li>}
+        </li>} */}
       </ul>
 
       {!user ? 
@@ -54,10 +54,21 @@ const {Logout} = useLogout();
       <NavLink className="text" to="/signup">Signup</NavLink>
       </div> 
       : 
-      <div className="navbar-user-logout">
-      <p>{user.email}</p>
-      <Button type="button" onClick={() => dispatch(Logout())}>Logout</Button>
-      </div>}
+      <div class="dropdown">
+  <button class="btn btn-sm btn-light border shadow dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    {user.email.split('@')[0]} {user.admin && <span className="text-danger bold">Admin</span>}
+  </button>
+  <ul class="dropdown-menu">
+  {user.admin && <li><Link to="/admin-product-list" class="dropdown-item" href="#">Manage Products</Link></li>}
+    {user.admin && <li><Link to="/admin-list" class="dropdown-item" >Manage Admins</Link></li>}
+    <li><a className="dropdown-item" onClick={() => dispatch(Logout())}>Logout</a></li>
+  </ul>
+</div>
+      // <div className="navbar-user-logout">
+      // <p>{user.email}</p>
+      // <Button type="button" onClick={() => dispatch(Logout())}>Logout</Button>
+      // </div>
+    }
 
     </nav>
   );
