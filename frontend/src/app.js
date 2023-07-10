@@ -20,6 +20,11 @@ import EditProductForm from "./pages/EditProductForm";
 
 function App() {
   const user = useSelector(state => state.user);
+  let admin;
+  if(user != null && user.admin != null)
+  {
+admin = user.admin;
+  }
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -56,15 +61,9 @@ function App() {
 
               <Route path="/login" element={!user ? <LoginForm /> : <Navigate to="/" />}></Route>
 
-              <Route path="/admin-list" element={user.admin ? <AdminList /> : <Navigate to="/" />}></Route>
+              <Route path="/admin-list" element={admin ? <AdminList /> : <Navigate to="/" />}></Route>
 
-              <Route path="/admin-product-list" element={user.admin ? <AdminProductList /> : <Navigate to="/" />}></Route>
-
-              {/* <Route path="/admin/" element={user ? <Admin /> : <Navigate to="/login" />}>
-                <Route path="" element={<AdminList />}></Route>
-
-                <Route path="product-list" element={<AdminProductList />}></Route>
-              </Route> */}
+              <Route path="/admin-product-list" element={admin ? <AdminProductList /> : <Navigate to="/" />}></Route>
 
               <Route path="/edit-product/:id/" element={user && user.admin ? <EditProductForm /> : <Home />}></Route>
             </Routes>

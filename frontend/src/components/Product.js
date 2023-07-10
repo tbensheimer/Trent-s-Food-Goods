@@ -25,7 +25,7 @@ export default function Product(props) {
           )}
       </div>
       <div className="product-info">
-        <h3>{details.name}</h3>
+        <h3 className="product-name">{details.name}</h3>
         <p>{details.description}</p>
       </div>
       <div className="product-checkout">

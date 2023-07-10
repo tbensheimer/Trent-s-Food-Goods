@@ -2,8 +2,7 @@ import { NavLink, Link } from "react-router-dom";
 import {useSelector, useDispatch} from "react-redux";
 import { cartCountSelector } from "../redux/store";
 import useLogout from "../hooks/useLogout";
-import Button from "../components/Button";
-import Logo from "../assets/TFlogo.jpg";
+import Logo from "../assets/TFG-logo.jpg";
 
 export default function Navbar() {
 const cartCount = useSelector(cartCountSelector);
@@ -14,7 +13,7 @@ const {Logout} = useLogout();
   return (
     <nav className="navbar">
       <NavLink to="/" className="nav-brand">
-        <img src={Logo} alt="TF store logo" height="80" width="80" />
+        <img src={Logo} className="img" alt="TFG store logo" height="80" width="120" />
       </NavLink>
 
       <ul>
@@ -23,11 +22,13 @@ const {Logout} = useLogout();
             Home
           </NavLink>
         </li>
+        
         <li className="nav-item">
           <NavLink className={({isActive}) => isActive ? "active" : ""} to="/about">
             About us
           </NavLink>
         </li>
+
         {user && 
         <li className="nav-item">
           <NavLink className={({isActive}) => isActive ? "active" : ""} to="/products">
@@ -35,11 +36,11 @@ const {Logout} = useLogout();
           </NavLink>
         </li>}
 
-        {user && <li>
+        {/* {user && <li>
           <NavLink to="/cart" className="nav-item nav-cart btn btn-accent">
             Cart ({cartCount})
           </NavLink>
-        </li>}
+        </li>} */}
 
         {/* {user && user.admin && <li className="nav-item">
           <NavLink to="/admin/" className={({isActive}) => isActive ? "active" : ""}>
@@ -54,8 +55,9 @@ const {Logout} = useLogout();
       <NavLink className="text" to="/signup">Signup</NavLink>
       </div> 
       : 
+      <div className="user-cart-div">
       <div class="dropdown">
-  <button class="btn btn-sm btn-light border shadow dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+  <button class="btn btn-sm btn-light shadow dropdown-toggle red-border" type="button" data-bs-toggle="dropdown" aria-expanded="false">
     {user.email.split('@')[0]} {user.admin && <span className="text-danger bold">Admin</span>}
   </button>
   <ul class="dropdown-menu">
@@ -64,12 +66,11 @@ const {Logout} = useLogout();
     <li><a className="dropdown-item" onClick={() => dispatch(Logout())}>Logout</a></li>
   </ul>
 </div>
-      // <div className="navbar-user-logout">
-      // <p>{user.email}</p>
-      // <Button type="button" onClick={() => dispatch(Logout())}>Logout</Button>
-      // </div>
+<NavLink to="/cart" className="nav-item nav-cart btn btn-accent-g">
+            Cart ({cartCount})
+          </NavLink>
+</div>
     }
-
     </nav>
   );
     }
