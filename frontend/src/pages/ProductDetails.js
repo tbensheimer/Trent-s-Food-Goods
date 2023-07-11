@@ -2,11 +2,17 @@ import { useState, useEffect } from "react";
 import { Link, NavLink, useParams, Outlet} from "react-router-dom";
 import Button from "../components/Button";
 import Loader from "../components/Loader";
+import { useSelector } from "react-redux";
 
 export default function ProductDetails() {
   const [product, setProduct] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const params = useParams();
+  const cart = useSelector(state => state.cart);
+
+  const productFromCart = cart.find((product) => product._id === product._id);
+
+  const quantity = productFromCart ? productFromCart.quantity : 0;
 
   useEffect(() => {
  
@@ -31,8 +37,9 @@ export default function ProductDetails() {
       {isLoading && <Loader />}
       <div>
       <Link to="/products"><Button outline className="product-details">Back</Button></Link>
-
-        <h2>{product.name}</h2>
+        <div className="center margin">
+        <h3>{product.name}</h3>
+        <div className="product-image-container">
         <img
           src={product.image}
           width="125"
@@ -40,6 +47,13 @@ export default function ProductDetails() {
           className="product-details-image"
           alt={product.name}
         />
+        {quantity > 0 && (
+            <div className="product-quantity-container">
+              <div className="product-quantity">{quantity}</div>
+            </div>
+          )}
+          </div>
+          </div>
       </div>
       <div>
         <div className="tabs">

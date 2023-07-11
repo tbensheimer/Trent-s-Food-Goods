@@ -57,12 +57,12 @@ const {Logout} = useLogout();
       : 
       <div className="user-cart-div">
       <div class="dropdown">
-  <button class="btn btn-sm btn-light shadow dropdown-toggle red-border" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-    {user.email.split('@')[0]} {user.admin && <span className="text-danger bold">Admin</span>}
+  <button class="btn btn-sm btn-light shadow dropdown-toggle green-border" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    {user.email.split('@')[0]} {user.admin && <span className="text-success bold">Admin</span>}
   </button>
-  <ul class="dropdown-menu">
-  {user.admin && <li><Link to="/admin-product-list" class="dropdown-item" href="#">Manage Products</Link></li>}
-    {user.admin && <li><Link to="/admin-list" class="dropdown-item" >Manage Admins</Link></li>}
+  <ul class="dropdown-menu green-border">
+  {user.admin && <li className="green-underline"><Link to="/admin-product-list" class="dropdown-item" href="#">Manage Products</Link></li>}
+    {user.admin && <li className="green-underline"><Link to="/admin-list" class="dropdown-item" >Manage Admins</Link></li>}
     <li><a className="dropdown-item" onClick={() => dispatch(Logout())}>Logout</a></li>
   </ul>
 </div>

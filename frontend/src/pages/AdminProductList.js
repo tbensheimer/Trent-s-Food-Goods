@@ -35,7 +35,7 @@ export default function AdminProductList() {
     return (
         <div className="admin-product-list-layout">
             {isLoading && <Loader />}
-            {products && <Link to="/edit-product/0" className="create-product-btn"><Button>Create Product</Button></Link>}
+            {products && <Link to="/edit-product/0" className="create-product-btn"><Button>Create New Product</Button></Link>}
            {products && products.map(product => {
             return <ProductForAdmin
             key={product._id}

@@ -387,6 +387,10 @@ div.error {
     grid-template-columns: 1fr;
 }
 
+.center {
+  text-align: center;
+}
+
 
 /* Products */
 .products-grid {
@@ -401,7 +405,7 @@ div.error {
   border-radius: 25px;
   display: grid;
   grid-template-columns: auto 1fr auto;
-  border-left: 5px solid var(--accent-1);
+  border-left: 5px solid var(--primary-1);
 }
 
 .product-name {
@@ -610,7 +614,7 @@ border-left: 5px solid var(--accent-1);
   color: gray;
   border-color:gray;
   font-size: 14px;
-  margin: 5px;
+  margin-bottom: 10px;
 }
 
 .product-delete {
@@ -667,16 +671,21 @@ label, .bold {
 .create-product-btn {
   align-self: start;
   margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 .admin-product-btns {
   align-self: end;
 }
 
-.red-border {
-  border: solid 1px var(--accent-1);
+.green-border {
+  border: solid 2px var(--primary-1);
+  border-radius: 15px;
 }
 
+.green-underline {
+  border-bottom: solid 1px var(--primary-1);
+}
 .user-cart-div {
   width: 25%;
   display: flex;
