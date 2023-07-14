@@ -35,18 +35,6 @@ const {Logout} = useLogout();
             Products
           </NavLink>
         </li>}
-
-        {/* {user && <li>
-          <NavLink to="/cart" className="nav-item nav-cart btn btn-accent">
-            Cart ({cartCount})
-          </NavLink>
-        </li>} */}
-
-        {/* {user && user.admin && <li className="nav-item">
-          <NavLink to="/admin/" className={({isActive}) => isActive ? "active" : ""}>
-            Admin
-          </NavLink>
-        </li>} */}
       </ul>
 
       {!user ? 
@@ -66,7 +54,7 @@ const {Logout} = useLogout();
     <li><a className="dropdown-item" onClick={() => dispatch(Logout())}>Logout</a></li>
   </ul>
 </div>
-<NavLink to="/cart" className="nav-item nav-cart btn btn-accent-g">
+<NavLink to="/cart" className={({isActive}) => isActive ? "active nav-item nav-cart btn btn-success" : "nav-item nav-cart btn btn-accent-g"}>
             Cart ({cartCount})
           </NavLink>
 </div>

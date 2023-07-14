@@ -45,14 +45,13 @@ export default function Cart() {
   
     return (
       <div className="cart-layout">
-        <div>
-          <h1>Your Cart</h1>
+          <h2 className="margin-lg">Your Cart</h2>
           {cart.length === 0 && (
             <p>You have not added any product to your cart yet.</p>
           )}
           {cart.length > 0 && (
             <>
-              <table className="table table-cart">
+              <table className="store-table table-cart">
                 <thead>
                   <tr>
                     <th width="25%" className="th-product">
@@ -106,9 +105,6 @@ export default function Cart() {
             </>
           )
           }
-        </div>
-      </div>
-                
-      
+        </div>                
     );
   }

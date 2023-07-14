@@ -7,7 +7,7 @@ export default function About() {
             We started operations in 2023. We guarantee fresh produce.
             <br />
             Save time by shopping on our app and we'll deliver the products right
-            to your home. <br />
+            to your home. <br /><br/>
             <em>We use Stripe to process your payment.</em>
           </p>
         </div>
@@ -16,7 +16,7 @@ export default function About() {
           height="275"
           width="183"
           className="rounded"
-          alt=""
+          alt="Woman holding a bag of fruit"
         />
       </div>
     );

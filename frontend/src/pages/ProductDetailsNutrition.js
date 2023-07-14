@@ -9,7 +9,7 @@ export default function ProductDetailsNutrition() {
 
     return (
         <>
-        <table id="nutrition-table" className="table table-nutrition">
+        <table className="store-table table-nutrition">
             <thead>
                 <tr>
                 <th>Nutrient</th>

@@ -38,7 +38,6 @@ export default function ProductDetails() {
       <div>
       <Link to="/products"><Button outline className="product-details">Back</Button></Link>
         <div className="center margin">
-        <h3>{product.name}</h3>
         <div className="product-image-container">
         <img
           src={product.image}
@@ -57,6 +56,7 @@ export default function ProductDetails() {
       </div>
       <div>
         <div className="tabs">
+          <h2 className="text-center">{product.name}</h2>
           <ul>
           <li>
               <NavLink className={({isActive}) => isActive ? "tab-active" : ""} to="" end>
