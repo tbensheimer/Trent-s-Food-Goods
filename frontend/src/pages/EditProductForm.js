@@ -20,6 +20,7 @@ export default function EditProductForm() {
     const [storage, setStorage] = useState("");
     const [isLoading, setIsLoading] = useState(true);
     const [success, setSuccess] = useState(null);
+    const [error, setError] = useState(null);
     const params = useParams();
   
     useEffect(() => {
@@ -122,13 +123,19 @@ export default function EditProductForm() {
                 else {
                 setSuccess("Successfully saved changes!");
                 }
+
+                setError(null);
             }
+        }
+        else {
+            setSuccess(null);
+            setError(data.error);
         }
     }
 
     return (
         <>
-        <Link to="/admin/product-list"><Button outline className="product-details">Back</Button></Link>
+        <Link to="/admin-product-list"><Button outline className="product-details">Back</Button></Link>
 
         <div className="edit-product-form">
             {isLoading && <Loader />}
@@ -142,7 +149,7 @@ export default function EditProductForm() {
             </div>
 
             <label htmlFor="price">Price:</label>
-            <Input id="price" type="number" value={price} onChange={e => setPrice(e.target.value)} />
+            <Input id="price" type="text" value={price} onChange={e => setPrice(e.target.value)} />
 
             <label htmlFor="image">Image:</label>
             <input required type="file" onChange={handleFileChange}/>
@@ -172,6 +179,7 @@ export default function EditProductForm() {
             </div>
 
                 {success && <div className="success">{success}</div>}
+                {error && <div className="error">{error}</div>}
             <Button type="button" onClick={SaveChanges}>{id === 0 ? "Create" : "Save"}</Button>
         </div>
         </>

@@ -462,6 +462,10 @@ div.error {
   padding: 5px;
 }
 
+.cursor {
+  cursor: pointer;
+}
+
 .product-quantity {
   background-color: var(--primary-1);
   color: white;
@@ -592,7 +596,7 @@ justify-content: space-between;
 width: 70%;
 font-weight: bold;
 font-family: Georgia, 'Times New Roman', Times, serif;
-border-left: 5px solid var(--accent-1);
+border-left: 5px solid var(--primary-1);
 
 }
 

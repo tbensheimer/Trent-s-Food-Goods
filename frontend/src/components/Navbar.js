@@ -51,7 +51,7 @@ const {Logout} = useLogout();
   <ul class="dropdown-menu green-border">
   {user.admin && <li className="green-underline"><Link to="/admin-product-list" class="dropdown-item" href="#">Manage Products</Link></li>}
     {user.admin && <li className="green-underline"><Link to="/admin-list" class="dropdown-item" >Manage Admins</Link></li>}
-    <li><a className="dropdown-item" onClick={() => dispatch(Logout())}>Logout</a></li>
+    <li><a className="dropdown-item cursor" onClick={() => dispatch(Logout())}>Logout</a></li>
   </ul>
 </div>
 <NavLink to="/cart" className={({isActive}) => isActive ? "active nav-item nav-cart btn btn-success" : "nav-item nav-cart btn btn-accent-g"}>

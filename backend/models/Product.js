@@ -1,3 +1,4 @@
+const validator = require('validator');
 const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
@@ -43,6 +44,16 @@ const productSchema = new Schema({
         type: String,
         required: true,
     }
-})
+});
+
+productSchema.statics.validateProduct = function(name, description, price, stripeId, fat, protein, salt, carbs, storage) {
+        if(!name || !description || !price || !stripeId || !fat || !protein || !salt || !carbs || !storage) {
+            throw Error("Please fill all fields");
+        }
+
+        if(!validator.isNumeric(price.toString()) || !validator.isNumeric(fat.toString()) || !validator.isNumeric(protein.toString()) || !validator.isNumeric(carbs.toString()) || !validator.isNumeric(salt.toString())) {
+            throw Error("Please enter only number values for the fields: price, fat, protein, salt, carbs");
+        }
+}
 
 module.exports = mongoose.model('Product', productSchema);

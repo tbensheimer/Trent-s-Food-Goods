@@ -28,7 +28,10 @@ const getProductDetails = async (req, res) => {
 
 const createProduct = async (req, res) => {
     const {name, description, price, stripeId, image, fat, protein, salt, carbs, storage } = req.body;
+
     try {
+        Product.validateProduct(name, description, price, stripeId, fat, protein, salt, carbs, storage);
+
         const product = await Product.create({name, description, price, price_id: stripeId, image, fat, protein, salt, carbs, storage});
 
         if(product) {
@@ -44,6 +47,8 @@ const updateProduct = async (req, res) => {
     const {id, name, description, price, stripeId, image, fat, protein, salt, carbs, storage } = req.body;
 
     try {
+        Product.validateProduct(name, description, price, stripeId, fat, protein, salt, carbs, storage);
+
         const product = await Product.findById(id);
 
         product.name = name;
@@ -62,13 +67,10 @@ const updateProduct = async (req, res) => {
         if(updatedProduct) {
             res.status(200).json({success: true, _id: product._id});
         }
-
     }
     catch (error) {
         res.status(400).json({error: error.message});
     }
-
-
 }
 
 const removeProduct = async (req, res) => {
