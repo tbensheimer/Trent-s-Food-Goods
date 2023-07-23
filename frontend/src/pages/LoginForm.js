@@ -24,8 +24,7 @@ const handleFormSubmit = async (e) => {
         <Button disabled={loading} type="submit">Login</Button>
         {error && <div className="error">{error}</div>}
         </form>
-        
-        <p>Don't have account? <Link to="/signup">Sign up</Link></p>
+        <p className="margin">Don't have account? <Link to="/signup">Sign up</Link></p>
         </div>
     )
 }

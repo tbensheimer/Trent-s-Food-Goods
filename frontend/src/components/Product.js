@@ -13,7 +13,7 @@ export default function Product(props) {
   const quantity = productFromCart ? productFromCart.quantity : 0;
 
   return (
-    <div className="product">
+    <div className="product margin">
       <div className="product-image-container">
         <Link to={`/products/product/${details._id}`}>
           <img src={details.image} width="100" height="100" className="product-image" alt={details.name} />

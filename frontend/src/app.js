@@ -12,7 +12,6 @@ import LoginForm from "./pages/LoginForm";
 import SignupForm from "./pages/SignupForm";
 import React, { useEffect } from "react";
 import { login } from "./redux/store";
-import Admin from "./pages/Admin";
 import ProductDetailInfo from "./pages/ProductDetailInfo";
 import AdminProductList from "./pages/AdminProductList";
 import AdminList from "./pages/AdminList";
