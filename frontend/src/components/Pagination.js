@@ -57,14 +57,14 @@ return (
             }
           })}
         </div>
-        <ul className="pageNumbers"> 
-           <li>
+        <ul className="page-numbers"> 
+           <li className='li-buttons'>
                <button onClick={handlePrevClick} disabled={currentPage === pages[0]}>Prev</button>
            </li>
            {pageDecremenEllipses}
             {pageNumbers}
            {pageIncrementEllipses}
-            <li>
+            <li className='li-buttons'>
                <button onClick={handleNextClick} disabled={currentPage === pages[pages.length-1]}>Next</button>
            </li>
         </ul>
