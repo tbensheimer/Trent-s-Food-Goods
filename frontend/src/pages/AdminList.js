@@ -1,9 +1,17 @@
 import {useEffect, useState} from "react";
+import Pagination from "../components/Pagination";
 
 export default function AdminList() {
 const [users, setUsers] = useState([]);
 const [error, setError] = useState(null);
 const [success, setSuccess] = useState(null);
+
+//
+const pageNumberLimit = 5;
+const [currentPage, setCurrentPage] = useState(1);
+const [maxPageLimit, setMaxPageLimit] = useState(5);
+const [minPageLimit, setMinPageLimit] = useState(0);
+//
 
 useEffect(() => {
     const fetchUsers = async () => {
@@ -21,7 +29,7 @@ useEffect(() => {
 fetchUsers();
 }, [])
 
-const ChangeAdmin = async (id) => {
+const changeAdmin = async (id) => {
     const response = await fetch("/user/admin", {
         method: "POST",
         headers: {
@@ -42,13 +50,46 @@ const ChangeAdmin = async (id) => {
     }
 }
 
+const onPageChange= (pageNumber)=>{
+    setCurrentPage(pageNumber);
+  }
+  const onPrevClick = ()=>{
+      if((currentPage-1) % pageNumberLimit === 0){
+          setMaxPageLimit(maxPageLimit - pageNumberLimit);
+          setMinPageLimit(minPageLimit - pageNumberLimit);
+      }
+      setCurrentPage(prev=> prev-1);
+   }
+
+  const onNextClick = ()=>{
+       if(currentPage+1 > maxPageLimit){
+           setMaxPageLimit(maxPageLimit + pageNumberLimit);
+           setMinPageLimit(minPageLimit + pageNumberLimit);
+       }
+       setCurrentPage(prev=>prev+1);
+    }
+
+    const paginationAttributes = {
+      currentPage,
+      maxPageLimit,
+      minPageLimit,
+    };
+
     return (
         <div className="admin-list-layout">
+            <h2 className="margin">Admin List</h2>
             {success && <div className="success">{success}</div>}
             {error && <div className="error">{error}</div>}
-            {users && users.map(user => {
-                return <div className="user" key={user.email}>{user.email} <span>{user.admin && <span className="user-admin">Admin</span>} <input onChange={() => ChangeAdmin(user._id)} checked={user.admin} type="checkbox" /></span></div>
-            })}
+            {users && <Pagination {...paginationAttributes} 
+                          onPrevClick={onPrevClick} 
+                          onNextClick={onNextClick}
+                          onPageChange={onPageChange}
+                          admin={false}
+                          adminList={true}
+                          changeAdmin={changeAdmin}
+                          data={users}
+                          totalPages={Math.ceil(users.length / 8)}/>
+                          }
         </div>
     )
 }

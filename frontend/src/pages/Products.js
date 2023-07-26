@@ -66,7 +66,7 @@ export default function Products(props) {
                           onNextClick={onNextClick}
                           onPageChange={onPageChange}
                           admin={false}
-                          products={products}
+                          data={products}
                           totalPages={Math.ceil(products.length / 4)}/>
                           }
       </div>

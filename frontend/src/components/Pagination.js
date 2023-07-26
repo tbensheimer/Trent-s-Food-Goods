@@ -3,11 +3,11 @@ import Product from './Product';
 import ProductForAdmin from "./ProductForAdmin";
 
 export default function Pagination(props) {
-    const { totalPages, products, currentPage, maxPageLimit, minPageLimit, admin} = props;
+    const { totalPages, data, currentPage, maxPageLimit, minPageLimit, admin} = props;
     const pages = [];
     const skip = (currentPage - 1) * 4;
     const end = currentPage * 4;
-    let renderedProducts = products.slice(skip, end);
+    let renderedData = data.slice(skip, end);
 
     for(let i=1 ; i<=totalPages; i++){
         pages.push(i);
@@ -47,25 +47,31 @@ export default function Pagination(props) {
    }
 
 return (
-    <div className="main">
-        <div className="mainData">
-          {renderedProducts.map((product) => {
-            if(admin) {
-                return <ProductForAdmin removeProductAfterDelete={props.removeProductAfterDelete} key={product._id} details={product} />
-            } else {
-                return <Product key={product._id} details={product}/> 
+    <div className={props.adminList ? "main full-width" : "main"}>
+        <div className={props.adminList ? "mainData full-width-data" : "mainData"}>
+          {renderedData.map((data) => {
+            if (props.adminList) {
+                return (<div key={data.email} className='admin-div'>
+                    <div className="user" key={data.email}>{data.email} <span>{data.admin && <span className="user-admin">Admin</span>} <input onChange={() => props.changeAdmin(data._id)} checked={data.admin} type="checkbox" /></span></div>
+                    </div>)
+            }
+            else if(admin) {
+                return <ProductForAdmin removeProductAfterDelete={props.removeProductAfterDelete} key={data._id} details={data} />
+            } 
+            else {
+                return <Product key={data._id} details={data}/> 
             }
           })}
         </div>
         <ul className="page-numbers"> 
            <li className='li-buttons'>
-               <button onClick={handlePrevClick} disabled={currentPage === pages[0]}>Prev</button>
+               {data && <button onClick={handlePrevClick} disabled={currentPage === pages[0]}>Prev</button>}
            </li>
            {pageDecremenEllipses}
             {pageNumbers}
            {pageIncrementEllipses}
             <li className='li-buttons'>
-               <button onClick={handleNextClick} disabled={currentPage === pages[pages.length-1]}>Next</button>
+              {data && <button onClick={handleNextClick} disabled={currentPage === pages[pages.length-1]}>Next</button>}
            </li>
         </ul>
     </div>

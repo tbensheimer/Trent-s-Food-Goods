@@ -72,7 +72,7 @@ export default function AdminProductList() {
                           onNextClick={onNextClick}
                           onPageChange={onPageChange}
                           admin={true}
-                          products={products}
+                          data={products}
                           totalPages={Math.ceil(products.length / 4)}
                           removeProductAfterDelete={removeProductAfterDelete}
                           />

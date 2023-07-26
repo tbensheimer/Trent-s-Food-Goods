@@ -589,7 +589,7 @@ div.error {
 .user {
 background-color: white;
 border-radius: 20px;
-margin: 15px;
+margin: 10px;
 padding: 15px;
 display: flex;
 justify-content: space-between;
@@ -601,7 +601,6 @@ border-left: 5px solid var(--primary-1);
 }
 
 .admin-list-layout {
-  margin: 20px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -753,8 +752,16 @@ label, .bold {
 
 .page-numbers li button:disabled {
   background-color: var(--neutral-4);
-  color: var(--neutral-3);
-  
+  color: var(--neutral-3); 
+}
+
+.full-width  {
+  width:  100%;
+}
+
+.admin-div {
+  display: flex;
+  justify-content: center;
 }
 
 @media (max-width: 1200px) {
@@ -786,8 +793,6 @@ label, .bold {
   padding: 0 0 0 0;
   }
 }
-
-
 
 /* Loader */
 .spinner {
