@@ -764,6 +764,12 @@ label, .bold {
   justify-content: center;
 }
 
+.loader-div {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 @media (max-width: 1200px) {
   .navbar-user-logout {
     flex-direction: column;

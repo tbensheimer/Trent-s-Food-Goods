@@ -3,10 +3,10 @@ import Product from './Product';
 import ProductForAdmin from "./ProductForAdmin";
 
 export default function Pagination(props) {
-    const { totalPages, data, currentPage, maxPageLimit, minPageLimit, admin} = props;
+    const { dataPerPage, totalPages, data, currentPage, maxPageLimit, minPageLimit, admin} = props;
     const pages = [];
-    const skip = (currentPage - 1) * 4;
-    const end = currentPage * 4;
+    const skip = (currentPage - 1) * dataPerPage;
+    const end = currentPage * dataPerPage;
     let renderedData = data.slice(skip, end);
 
     for(let i=1 ; i<=totalPages; i++){

@@ -1,5 +1,6 @@
 export default function Loader() {
     return (
+      <div className="loader-div">
       <svg
         className="spinner"
         width="65px"
@@ -17,5 +18,6 @@ export default function Loader() {
           r="30"
         ></circle>
       </svg>
+      </div>
     );
   }

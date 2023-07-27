@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import Pagination from "../components/Pagination";
 
 export default function AdminList() {
-const [users, setUsers] = useState([]);
+const [users, setUsers] = useState(null);
 const [error, setError] = useState(null);
 const [success, setSuccess] = useState(null);
 
@@ -88,7 +88,8 @@ const onPageChange= (pageNumber)=>{
                           adminList={true}
                           changeAdmin={changeAdmin}
                           data={users}
-                          totalPages={Math.ceil(users.length / 8)}/>
+                          totalPages={Math.ceil(users.length / 5)}
+                          dataPerPage={5}/>
                           }
         </div>
     )

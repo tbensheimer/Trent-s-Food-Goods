@@ -3,7 +3,7 @@ import Loader from "../components/Loader";
 import Pagination from "../components/Pagination";
 
 export default function Products(props) {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   //
@@ -67,7 +67,8 @@ export default function Products(props) {
                           onPageChange={onPageChange}
                           admin={false}
                           data={products}
-                          totalPages={Math.ceil(products.length / 4)}/>
+                          totalPages={Math.ceil(products.length / 4)}
+                          dataPerPage={4}/>
                           }
       </div>
     </div>

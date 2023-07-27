@@ -75,6 +75,7 @@ export default function AdminProductList() {
                           data={products}
                           totalPages={Math.ceil(products.length / 4)}
                           removeProductAfterDelete={removeProductAfterDelete}
+                          dataPerPage={4}
                           />
                           }
         </div>
