@@ -35,9 +35,11 @@ export default function ProductDetailsNutrition() {
             </tr>
         </tbody>
     </table>
+    <div className="border-top">
      <Button onClick={() => dispatch(addProduct(product))} outline>
      ${product.price}
    </Button>
+   </div>
    </>
     );
 }

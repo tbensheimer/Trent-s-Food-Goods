@@ -54,7 +54,7 @@ export default function ProductDetails() {
           </div>
           </div>
       </div>
-      <div>
+      <div className="details-div">
         <div className="tabs">
           <h2 className="text-center">{product.name}</h2>
           <ul>

@@ -17,7 +17,9 @@ export default function ProductDetailInfo() {
         {product.description} sold at <strong>${product.price}</strong> per
         piece.
       </p>
+      <div className="border-top">
       <Button outline onClick={() => onProductAdd()}>${product.price}</Button>
+      </div>
     </>
   );
 }

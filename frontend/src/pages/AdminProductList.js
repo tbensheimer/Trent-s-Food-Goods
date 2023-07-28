@@ -9,9 +9,9 @@ export default function AdminProductList() {
     const [isLoading, setIsLoading] = useState(true);
 
   //
-  const pageNumberLimit = 5;
+  const pageNumberLimit = 3;
   const [currentPage, setCurrentPage] = useState(1);
-  const [maxPageLimit, setMaxPageLimit] = useState(5);
+  const [maxPageLimit, setMaxPageLimit] = useState(3);
   const [minPageLimit, setMinPageLimit] = useState(0);
   //
 
@@ -73,9 +73,9 @@ export default function AdminProductList() {
                           onPageChange={onPageChange}
                           admin={true}
                           data={products}
-                          totalPages={Math.ceil(products.length / 4)}
+                          totalPages={Math.ceil(products.length / 1)}
                           removeProductAfterDelete={removeProductAfterDelete}
-                          dataPerPage={4}
+                          dataPerPage={1}
                           />
                           }
         </div>
