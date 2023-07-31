@@ -1,6 +1,5 @@
 import Button from "./Button";
 import { Link } from "react-router-dom";
-import { useState } from "react";
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 
@@ -47,7 +46,7 @@ export default function ProductForAdmin(props) {
         </Link>
       </div>
       <div className="product-info">
-        <h3>{details.name}</h3>
+        <h3 className="product-name">{details.name}</h3>
         <p>{details.description}</p>
       </div>
       <div className="product-checkout">

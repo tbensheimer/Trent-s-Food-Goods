@@ -73,9 +73,9 @@ export default function AdminProductList() {
                           onPageChange={onPageChange}
                           admin={true}
                           data={products}
-                          totalPages={Math.ceil(products.length / 1)}
+                          totalPages={Math.ceil(products.length / 4)}
                           removeProductAfterDelete={removeProductAfterDelete}
-                          dataPerPage={1}
+                          dataPerPage={4}
                           />
                           }
         </div>

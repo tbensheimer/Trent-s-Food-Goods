@@ -188,7 +188,7 @@ a:hover {
   margin-bottom: 1.5em;
   padding: 0.75em 0.5em;
   min-width: 200px;
-  width: 75%;
+  width: 100%;
   border: none;
   border-left: 7px solid var(--neutral-4);
   transition: border-left-color 160ms;
@@ -196,8 +196,7 @@ a:hover {
 }
 
 .textarea {
-  min-width: 380px !important;
-  width: 90% !important;
+  width: 100% !important;
   display: flex;
   flex-direction: column;
 }
@@ -299,7 +298,6 @@ div.error {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 10%;
   font-size: 1.3rem;
 }
 
@@ -319,6 +317,10 @@ div.error {
 
 .navbar-user-logout p {
   margin-right: 5px;
+}
+
+.visible-overflow {
+  overflow: visible;
 }
 
 /* TABS */
@@ -376,7 +378,7 @@ div.error {
   padding-bottom: 40px;
   display: grid;
   grid-template-columns: auto 1fr;
-  grid-gap: 40px;
+  grid-gap: 10px;
 }
 
 .login-form-layout, .signup-form-layout {
@@ -608,6 +610,8 @@ border-left: 5px solid var(--primary-1);
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 40px;
+  margin-bottom: 80px;
 }
 
 .user-admin {
@@ -645,11 +649,12 @@ border-left: 5px solid var(--primary-1);
 }
 
 .admin-product-list-layout {
-    margin: 20px;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 40px;
+  margin-bottom: 80px;
 }
 
 .margin {
@@ -678,9 +683,13 @@ border-left: 5px solid var(--primary-1);
 
 .edit-product-form {
   padding: 20px;
-  margin: 15px;
   border-radius: 15px;
   box-shadow: 0px 0px 5px black;
+}
+
+.edit-product-layout {
+  margin-top: 40px;
+  margin-bottom: 80px;
 }
 
 label, .bold {
@@ -706,10 +715,13 @@ label, .bold {
   border-bottom: solid 1px var(--primary-1);
 }
 .user-cart-div {
-  width: 25%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.dropdown {
+  margin-right: 10px;
 }
 
 .img {
@@ -785,6 +797,12 @@ label, .bold {
   padding-top: 10px;
 }
 
+.form-img-layout {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 @media (max-width: 1200px) {
   .navbar-user-logout {
     flex-direction: column;
@@ -792,8 +810,9 @@ label, .bold {
 }
 
 @media (max-width: 900px) {
-  .navbar-user-login {
-    flex-direction: column;
+
+  .nav-brand {
+    display: none;
   }
 }
 
@@ -824,6 +843,9 @@ label, .bold {
   .product-image-container {
     align-self: center;
     margin-bottom: 10px;
+  }
+  .user {
+    width: 100%;
   }
 }
 @media (max-width: 500px) {

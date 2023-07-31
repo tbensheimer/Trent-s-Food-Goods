@@ -135,6 +135,7 @@ export default function EditProductForm() {
 
     return (
         <>
+        <div className="edit-product-layout">
         <Link to="/admin-product-list"><Button outline className="product-details">Back</Button></Link>
 
         <div className="edit-product-form">
@@ -154,8 +155,10 @@ export default function EditProductForm() {
             <label htmlFor="image">Image:</label>
             <input required type="file" onChange={handleFileChange}/>
                 <br/>
+                <div className="form-img-layout">
                 {image && <div className="img-container"><span className="bold">Preview:</span><img src={image} className="product-pic" alt="food pic" /></div>}
                 {imageError && <div className="error">{imageError}</div>}
+                </div>
                 <br/>
 
             <label htmlFor="stripe">Price Id (from stripe, paypal, etc):</label>
@@ -181,6 +184,7 @@ export default function EditProductForm() {
                 {success && <div className="success">{success}</div>}
                 {error && <div className="error">{error}</div>}
             <Button type="button" onClick={SaveChanges}>{id === 0 ? "Create" : "Save"}</Button>
+        </div>
         </div>
         </>
     )

@@ -16,7 +16,7 @@ const {Logout} = useLogout();
         <img src={Logo} className="img" alt="TFG store logo" height="80" width="120" />
       </NavLink>
 
-      <ul>
+      <ul className="overflow-visible">
         <li className="nav-item">
           <NavLink className={({isActive}) => isActive ? "active" : ""} to="/">
             Home
@@ -35,14 +35,16 @@ const {Logout} = useLogout();
             Products
           </NavLink>
         </li>}
-      </ul>
 
-      {!user ? 
+        {!user ? 
+        <li>
       <div className="navbar-user-login">
         <NavLink className="text" to="/login" >Login</NavLink>
       <NavLink className="text" to="/signup">Signup</NavLink>
       </div> 
+      </li>
       : 
+      <li>
       <div className="user-cart-div">
       <div className="dropdown">
   <button className="btn btn-sm btn-light shadow dropdown-toggle green-border" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -58,7 +60,11 @@ const {Logout} = useLogout();
             Cart ({cartCount})
           </NavLink>
 </div>
+</li>
     }
+
+        
+      </ul>
     </nav>
   );
     }
