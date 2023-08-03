@@ -1,17 +1,13 @@
 import { useState, useEffect } from "react";
 import Loader from "../components/Loader";
 import Pagination from "../components/Pagination";
+import usePagination from "../hooks/usePagination";
 
 export default function Products(props) {
   const [products, setProducts] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const {paginationAttributes, onNextClick, onPrevClick, onPageChange} = usePagination();
 
-  //
-  const pageNumberLimit = 3;
-  const [currentPage, setCurrentPage] = useState(1);
-  const [maxPageLimit, setMaxPageLimit] = useState(3);
-  const [minPageLimit, setMinPageLimit] = useState(0);
-  //
   useEffect(() => {
     
       const fetchProducts = async () => {
@@ -29,31 +25,6 @@ export default function Products(props) {
       }
       fetchProducts();
   }, []);
-
-  const onPageChange= (pageNumber)=>{
-    setCurrentPage(pageNumber);
-  }
-  const onPrevClick = ()=>{
-      if((currentPage-1) % pageNumberLimit === 0){
-          setMaxPageLimit(maxPageLimit - pageNumberLimit);
-          setMinPageLimit(minPageLimit - pageNumberLimit);
-      }
-      setCurrentPage(prev=> prev-1);
-   }
-
-  const onNextClick = ()=>{
-       if(currentPage+1 > maxPageLimit){
-           setMaxPageLimit(maxPageLimit + pageNumberLimit);
-           setMinPageLimit(minPageLimit + pageNumberLimit);
-       }
-       setCurrentPage(prev=>prev+1);
-    }
-
-    const paginationAttributes = {
-      currentPage,
-      maxPageLimit,
-      minPageLimit,
-    };
 
   return (
     <div className="products-layout">

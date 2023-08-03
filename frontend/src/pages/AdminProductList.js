@@ -3,17 +3,12 @@ import Loader from "../components/Loader";
 import { Link } from "react-router-dom";
 import Button from "../components/Button";
 import Pagination from "../components/Pagination";
+import usePagination from "../hooks/usePagination";
 
 export default function AdminProductList() {
     const [products, setProducts] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
-
-  //
-  const pageNumberLimit = 3;
-  const [currentPage, setCurrentPage] = useState(1);
-  const [maxPageLimit, setMaxPageLimit] = useState(3);
-  const [minPageLimit, setMinPageLimit] = useState(0);
-  //
+    const {paginationAttributes, onNextClick, onPrevClick, onPageChange} = usePagination();
 
     useEffect(() => {
         const fetchProducts = async () => { 
@@ -37,31 +32,6 @@ export default function AdminProductList() {
         const filteredProducts = products.filter(product => product._id !== productId);
         setProducts(filteredProducts);
     }
-
-    const onPageChange= (pageNumber)=>{
-        setCurrentPage(pageNumber);
-      }
-      const onPrevClick = ()=>{
-          if((currentPage-1) % pageNumberLimit === 0){
-              setMaxPageLimit(maxPageLimit - pageNumberLimit);
-              setMinPageLimit(minPageLimit - pageNumberLimit);
-          }
-          setCurrentPage(prev=> prev-1);
-       }
-    
-      const onNextClick = ()=>{
-           if(currentPage+1 > maxPageLimit){
-               setMaxPageLimit(maxPageLimit + pageNumberLimit);
-               setMinPageLimit(minPageLimit + pageNumberLimit);
-           }
-           setCurrentPage(prev=>prev+1);
-        }
-    
-        const paginationAttributes = {
-          currentPage,
-          maxPageLimit,
-          minPageLimit,
-        };
 
     return (
         <div className="admin-product-list-layout">

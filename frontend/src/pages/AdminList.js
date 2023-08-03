@@ -1,17 +1,12 @@
 import {useEffect, useState} from "react";
 import Pagination from "../components/Pagination";
+import usePagination from "../hooks/usePagination";
 
 export default function AdminList() {
 const [users, setUsers] = useState(null);
 const [error, setError] = useState(null);
 const [success, setSuccess] = useState(null);
-
-//
-const pageNumberLimit = 3;
-const [currentPage, setCurrentPage] = useState(1);
-const [maxPageLimit, setMaxPageLimit] = useState(3);
-const [minPageLimit, setMinPageLimit] = useState(0);
-//
+const {paginationAttributes, onNextClick, onPrevClick, onPageChange} = usePagination();
 
 useEffect(() => {
     const fetchUsers = async () => {
@@ -49,31 +44,6 @@ const changeAdmin = async (id) => {
         setError(data.error);
     }
 }
-
-const onPageChange= (pageNumber)=>{
-    setCurrentPage(pageNumber);
-  }
-  const onPrevClick = ()=>{
-      if((currentPage-1) % pageNumberLimit === 0){
-          setMaxPageLimit(maxPageLimit - pageNumberLimit);
-          setMinPageLimit(minPageLimit - pageNumberLimit);
-      }
-      setCurrentPage(prev=> prev-1);
-   }
-
-  const onNextClick = ()=>{
-       if(currentPage+1 > maxPageLimit){
-           setMaxPageLimit(maxPageLimit + pageNumberLimit);
-           setMinPageLimit(minPageLimit + pageNumberLimit);
-       }
-       setCurrentPage(prev=>prev+1);
-    }
-
-    const paginationAttributes = {
-      currentPage,
-      maxPageLimit,
-      minPageLimit,
-    };
 
     return (
         <div className="admin-list-layout">
