@@ -4,26 +4,17 @@ import { Link } from "react-router-dom";
 import Button from "../components/Button";
 import Pagination from "../components/Pagination";
 import usePagination from "../hooks/usePagination";
+import useFetch from "../hooks/useFetch";
 
 export default function AdminProductList() {
     const [products, setProducts] = useState(null);
-    const [isLoading, setIsLoading] = useState(true);
     const {paginationAttributes, onNextClick, onPrevClick, onPageChange} = usePagination();
+    const {get, error, loading} = useFetch(window.location.origin);
 
     useEffect(() => {
         const fetchProducts = async () => { 
-            
-        const response = await fetch("/store/products");
-        const data = await response.json();
-
-        if(response.ok) {
-            setProducts(data.products);
-            setIsLoading(false);
-        }
-        else {
-            console.log("error in getting products");
-            setIsLoading(false);
-        }
+            const data = await get("/store/products");
+            data != undefined ? setProducts(data.products) : setProducts(null);
     }
         fetchProducts();
     },[])
@@ -35,9 +26,10 @@ export default function AdminProductList() {
 
     return (
         <div className="admin-product-list-layout">
-            {isLoading && <Loader />}
+            {loading && <Loader />}
+            {error && <div className="error">{error}</div>}
             {products && <Link to="/edit-product/0" className="create-product-btn"><Button>Create New Product</Button></Link>}
-                {products && <Pagination {...paginationAttributes} 
+            {products && <Pagination {...paginationAttributes} 
                           onPrevClick={onPrevClick} 
                           onNextClick={onNextClick}
                           onPageChange={onPageChange}
@@ -47,7 +39,7 @@ export default function AdminProductList() {
                           removeProductAfterDelete={removeProductAfterDelete}
                           dataPerPage={4}
                           />
-                          }
+                        }
         </div>
     )
 }

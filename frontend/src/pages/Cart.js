@@ -28,8 +28,8 @@ export default function Cart() {
             stripe.redirectToCheckout({
               lineItems: lineItems,
               mode: "payment",
-               successUrl: "http://localhost:3000/home",
-              cancelUrl: "http://localhost:3000/cart",
+               successUrl: window.location.origin + "/home",
+              cancelUrl: window.location.origin + "/cart",
               customerEmail: email
             })
             .then((response) => {

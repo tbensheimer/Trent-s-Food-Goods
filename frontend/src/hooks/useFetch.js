@@ -19,6 +19,7 @@ export default function useFetch(baseUrl) {
 
     if(response.ok) {
         setLoading(false);
+        setError(null);
         return data;
     }
   }

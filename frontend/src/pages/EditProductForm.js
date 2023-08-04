@@ -4,13 +4,13 @@ import { useState, useEffect } from "react";
 import Input from "../components/Input"
 import Button from "../components/Button";
 import { Link } from "react-router-dom";
+import useFetch from "../hooks/useFetch";
+import useFileConfig from "../hooks/useFileConfig";
 
 export default function EditProductForm() {
     const [id, setId] = useState(0);
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
-    const [image, setImage] = useState(null);
-    const [imageError, setImageError] = useState(null);
     const [price, setPrice] = useState("");
     const [stripeId, setStripeId] = useState("");
     const [protein, setProtein] = useState("");
@@ -18,17 +18,15 @@ export default function EditProductForm() {
     const [carbs, setCarbs] = useState("");
     const [salt, setSalt] = useState("");
     const [storage, setStorage] = useState("");
-    const [isLoading, setIsLoading] = useState(true);
     const [success, setSuccess] = useState(null);
-    const [error, setError] = useState(null);
     const params = useParams();
+    const {get, post, error, loading} = useFetch(window.location.origin);
+    const {handleFileChange, image, setImage, imageError} = useFileConfig();
   
     useEffect(() => {
       const fetchDetails = async () => {
-          const response = await fetch(`/store/products/product/${params.id}`);
-          const data = await response.json();
-  
-          if(response.ok) {
+        const data = await get(`/store/products/product/${params.id}`);
+          if(data != undefined) {
               setId(data._id);
               setName(data.name);
               setDescription(data.description);
@@ -48,74 +46,18 @@ export default function EditProductForm() {
       if(params.id !== "0") {
         fetchDetails();
       }
-      setIsLoading(false);
     }, []);
 
-    const handleFileChange = async (e) => {
-        setImage(null);
-
-        let file = e.target.files[0];  //selects first file if multiple uploaded
-
-        if(!file) {
-            setImageError("Please select a file");
-            return;
-        }
-
-        if(!file.type.includes('image')) {
-            setImageError("File type must be an image");
-            return;
-        }
-
-        if(file.size > 100000) {
-            setImageError("File size must be less than 100Kb");
-            return;
-        }
-
-        const base64 = await convertToBase64(file);
-        setImage(base64);
-        setImageError(null);
-    }
-
-    const convertToBase64 = (file) => {
-        return new Promise((resolve, reject) => {
-            const fileReader = new FileReader();
-            fileReader.readAsDataURL(file);
-            fileReader.onload = () => {
-                resolve(fileReader.result);
-            }
-            fileReader.onerror = (error) => {
-                reject(error);
-            }
-        })
-    }
-
     const SaveChanges = async () => {
-        let response;
+        let data;
         if(id === 0) {
-
-            response = await fetch(`/store/create-product`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({name, description, image, price, stripeId, protein, fat, carbs, salt, storage})
-            });        
+            data = await post("/store/create-product", {name, description, image, price, stripeId, protein, fat, carbs, salt, storage});       
         }
         else {
-            response = await fetch(`/store/edit-product/${id}`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({id, name, description, image, price, stripeId, protein, fat, carbs, salt, storage})
-            });
+            data = await post(`/store/edit-product/${id}`, {id, name, description, image, price, stripeId, protein, fat, carbs, salt, storage});
         }
 
-        const data = await response.json();
-
-        if(response.ok) {
-            if(data.success) {
-
+            if(data != undefined && data.success) {
                 if(id === 0) {
                 setId(data._id);
                 setSuccess("Successfully created product!");
@@ -123,14 +65,10 @@ export default function EditProductForm() {
                 else {
                 setSuccess("Successfully saved changes!");
                 }
-
-                setError(null);
+                } 
+                else if(data == undefined) {
+                setSuccess(null);
             }
-        }
-        else {
-            setSuccess(null);
-            setError(data.error);
-        }
     }
 
     return (
@@ -139,7 +77,7 @@ export default function EditProductForm() {
         <Link to="/admin-product-list"><Button outline className="product-details">Back</Button></Link>
 
         <div className="edit-product-form">
-            {isLoading && <Loader />}
+            {loading && <Loader />}
             
             <label htmlFor="name">Name:</label>
             <Input id="name" type="text" value={name} onChange={e => setName(e.target.value)} />
