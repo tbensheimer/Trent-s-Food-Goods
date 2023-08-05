@@ -3,38 +3,27 @@ import { Link, NavLink, useParams, Outlet} from "react-router-dom";
 import Button from "../components/Button";
 import Loader from "../components/Loader";
 import { useSelector } from "react-redux";
+import useFetch from "../hooks/useFetch";
 
 export default function ProductDetails() {
   const [product, setProduct] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
   const params = useParams();
   const cart = useSelector(state => state.cart);
-
+  const {get, loading} = useFetch(window.location.origin);
   const productFromCart = cart.find((product) => product._id === product._id);
-
   const quantity = productFromCart ? productFromCart.quantity : 0;
 
   useEffect(() => {
- 
     const fetchDetails = async () => {
-        const response = await fetch(`/store/products/product/${params.id}`);
-        const data = await response.json();
-
-        if(response.ok) {
-            setProduct(data);
-        }
-        else {
-            console.log("error in getting details");
-        }
+      const data = get(`/store/products/product/${params.id}`);
+      data != undefined ? setProduct(data.product) : console.log("Error getting details");
     }
-
         fetchDetails();
-        setIsLoading(false);
   }, []);
 
   return (
     <div className="product-details-layout">
-      {isLoading && <Loader />}
+      {loading && <Loader />}
       <div>
       <Link to="/products"><Button outline className="product-details">Back</Button></Link>
         <div className="center margin">

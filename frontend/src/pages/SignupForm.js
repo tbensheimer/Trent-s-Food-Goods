@@ -10,7 +10,6 @@ const {loading, error, Signup} = useSignup("");
 
 const handleFormSubmit = async (e) => {
     e.preventDefault();
-
     await Signup(email, password);
 }
 

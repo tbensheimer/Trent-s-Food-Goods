@@ -9,7 +9,6 @@ const [email, setEmail] = useState("");
 const [password, setPassword] = useState("");
 const {error, loading, Login} = useLogin();
 
-
 const handleFormSubmit = async (e) => {
         e.preventDefault();
         await Login(email, password);
