@@ -46,7 +46,7 @@ const {Logout} = useLogout();
       : 
       <li>
       <div className="user-cart-div">
-      <div className="dropdown">
+      <div className="dropdown" data-testid="dropdown">
   <button className="btn btn-sm btn-light shadow dropdown-toggle green-border" type="button" data-bs-toggle="dropdown" aria-expanded="false">
     {user.email.split('@')[0]} {user.admin && <span className="text-success bold">Admin</span>}
   </button>
