@@ -15,8 +15,8 @@ export default function ProductDetails() {
 
   useEffect(() => {
     const fetchDetails = async () => {
-      const data = get(`/store/products/product/${params.id}`);
-      data != undefined ? setProduct(data.product) : console.log("Error getting details");
+      const data = await get(`/store/products/product/${params.id}`);
+      data != undefined ? setProduct(data) : console.log("Error getting details");
     }
         fetchDetails();
   }, []);
@@ -24,6 +24,7 @@ export default function ProductDetails() {
   return (
     <div className="product-details-layout">
       {loading && <Loader />}
+      {product && <>
       <div>
       <Link to="/products"><Button outline className="product-details">Back</Button></Link>
         <div className="center margin">
@@ -68,6 +69,8 @@ export default function ProductDetails() {
         
         <Outlet context={product} />
       </div>
+      </>
+}
     </div>
   );
 }

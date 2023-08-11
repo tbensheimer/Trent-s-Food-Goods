@@ -26,7 +26,7 @@ export default function Pagination(props) {
     const pageNumbers = pages.map(page => {
         if(page <= maxPageLimit  && page > minPageLimit) {
             return(
-        <li key={page} id={page} onClick={handlePageClick} 
+        <li data-testid="page-links" key={page} id={page} onClick={handlePageClick} 
             className={currentPage === page ? 'active' : null }>
             {page}
         </li>
