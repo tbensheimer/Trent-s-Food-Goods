@@ -41,21 +41,19 @@ const mockStore = configureStore();
 it('Should render product properly', () => {
     let store = mockStore(initialState);
 
-    render(<Provider store={store}><BrowserRouter><Pagination {...paginationAttributes} 
-        onPrevClick={onPrevClick} 
-        onNextClick={onNextClick}
-        onPageChange={onPageChange}
-        admin={false}
-        data={products}
-        totalPages={Math.ceil(products.length / 3)}
-        dataPerPage={3}/></BrowserRouter></Provider>);
+    render(<Provider store={store}><BrowserRouter><Product details={productDetails} /></BrowserRouter></Provider>);
 
-    const renderedProducts = screen.getAllByRole("heading");
-    const links = screen.getAllByTestId("page-links");
-    const PrevBtn = screen.getByText("Prev");
-    
-    expect(renderedProducts.length).toBe(3);
-    expect(links.length).toBe(2);
-    expect(PrevBtn.disabled).toBe(true);
+    const productName = screen.getByText("Rice");
+    const description = screen.getByText("This is rice");
+    const quantityIcon = screen.getByText("4");
+    const xButton = screen.getByText("x");
+    const detailsBtn = screen.getByText("Details");
+
+    expect(productName).toBeInTheDocument();
+    expect(description).toBeInTheDocument();
+    expect(quantityIcon).toBeInTheDocument();
+    expect(xButton).toBeInTheDocument();
+    expect(xButton.className).toBe("btn btn-outline product-delete");
+    expect(detailsBtn).toBeInTheDocument();
 })
 });

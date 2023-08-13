@@ -107,9 +107,11 @@ it('Should render pagination properly with products', () => {
     const renderedProducts = screen.getAllByRole("heading");
     const links = screen.getAllByTestId("page-links");
     const PrevBtn = screen.getByText("Prev");
+    const quantityIcon = screen.getByText("1");
     
     expect(renderedProducts.length).toBe(3);
     expect(links.length).toBe(2);
     expect(PrevBtn.disabled).toBe(true);
+    expect(quantityIcon).toBeInTheDocument();
 })
 });
