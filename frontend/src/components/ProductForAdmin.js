@@ -39,7 +39,7 @@ export default function ProductForAdmin(props) {
     }
 
     return (<>
-<div className="product margin">
+<div data-testid="product" className="product margin">
       <div className="product-image-container">
         <Link to={`/products/product/${details._id}`}>
           <img src={details.image} width="100" height="100" className="product-image" alt={details.name} />

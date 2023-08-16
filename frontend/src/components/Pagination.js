@@ -51,7 +51,7 @@ return (
         <div className={props.adminList ? "mainData full-width-data" : "mainData"}>
           {renderedData.map((data) => {
             if (props.adminList) {
-                return (<div key={data.email} className='admin-div'>
+                return (<div key={data.email} className='admin-div' data-testid="user">
                     <div className="user" key={data.email}>{data.email} <span>{data.admin && <span className="user-admin">Admin</span>} <input onChange={() => props.changeAdmin(data._id)} checked={data.admin} type="checkbox" /></span></div>
                     </div>)
             }
