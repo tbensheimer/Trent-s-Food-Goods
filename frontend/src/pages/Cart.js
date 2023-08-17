@@ -65,7 +65,7 @@ export default function Cart() {
                 <tbody>
                   {cart.map((product) => {
                     return (
-                      <tr key={product.id}>
+                      <tr key={product._id}>
                         <td>
                           <img
                             src={product.image}
@@ -98,7 +98,7 @@ export default function Cart() {
               Enter your email and then click on pay and your products will be
               delivered to you on the same day!
             </p>
-            <Input onChange={e => setEmail(e.target.value)} required autocomplete="email" placeholder="Email" type="email" />
+            <Input onChange={e => setEmail(e.target.value)} required autoComplete="email" placeholder="Email" type="email" />
             {isLoading && <Loader />}
             <Button type="submit">Pay</Button>
             </form>

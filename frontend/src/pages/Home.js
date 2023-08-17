@@ -17,7 +17,7 @@ export default function Home() {
             width="350"
             height="240"
             className="rounded home-image"
-            alt=""
+            alt="A few books and a basket of fruit on the floor"
           />
         </div>
       );
