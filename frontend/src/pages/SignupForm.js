@@ -17,8 +17,8 @@ const handleFormSubmit = async (e) => {
         <div className="signup-form-layout">
         <form onSubmit={handleFormSubmit}>
             <h1>Signup</h1>
-        <Input required placeholder="Email" id="email" type="email" onChange={e => setEmail(e.target.value)} value={email} />
-        <Input required placeholder="Password" id="password" type="password" onChange={e => setPassword(e.target.value)} value={password} />
+        <Input required placeholder="Email" id="email" type="email" onChange={e => setEmail(e.target.value)} value={email} data-testid="input" />
+        <Input required placeholder="Password" id="password" type="password" onChange={e => setPassword(e.target.value)} value={password} data-testid="input" />
         <Button disabled={loading} type="submit">Signup</Button>
         {error && <div className="error">{error}</div>}
         </form>
