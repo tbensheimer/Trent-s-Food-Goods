@@ -13,12 +13,12 @@ export default function ProductDetailInfo() {
 
   return (
     <>
-      <p>
+      <p data-testid="description">
         {product.description} sold at <strong>${product.price}</strong> per
         piece.
       </p>
       <div className="border-top">
-      <Button outline onClick={() => onProductAdd()}>${product.price}</Button>
+      <Button outline onClick={() => onProductAdd()} data-testid="addBtn">${product.price}</Button>
       </div>
     </>
   );

@@ -1,22 +1,24 @@
-import { render, screen,  act } from "@testing-library/react";
+import { render, screen,  act, fireEvent } from "@testing-library/react";
 import '@testing-library/jest-dom'
 import LoginForm from "../pages/LoginForm";
 import configureStore from 'redux-mock-store'
 import { BrowserRouter } from "react-router-dom";
-import { Provider } from 'react-redux'
+import {Provider} from 'react-redux'
+
+beforeAll(() => jest.spyOn(window, 'fetch'))
 
 describe('Redux Environment Setup', () => {
     let initialState= {
         user: null,
-        cart: []
+        cart: [],
     };
-
+    
 const mockStore = configureStore();
 
 it('Should render LoginForm component properly', async () => {
     let store = mockStore(initialState);
 
-    render(<Provider store={store}><BrowserRouter><LoginForm /></BrowserRouter></Provider>);
+    render(<Provider store={store}><BrowserRouter><LoginForm/></BrowserRouter></Provider>);
 
     const signupLink = screen.getByRole("link");
     const inputs = screen.getAllByTestId("input");

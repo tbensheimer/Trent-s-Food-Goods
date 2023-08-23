@@ -9,11 +9,11 @@ export default function ProductDetailsStorage() {
 
     return (
       <>
-      <p>
+      <p data-testid="storage">
         <strong>Storage instructions:</strong> {product.storage}
       </p>
       <div className="border-top">
-      <Button onClick={() => dispatch(addProduct(product))} outline>
+      <Button data-testid="addBtn" onClick={() => dispatch(addProduct(product))} outline>
       ${product.price}
     </Button>
     </div>

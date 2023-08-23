@@ -9,7 +9,7 @@ export default function ProductDetailsNutrition() {
 
     return (
         <>
-        <table className="store-table table-nutrition">
+        <table data-testid="table" className="store-table table-nutrition">
             <thead>
                 <tr>
                 <th>Nutrient</th>
@@ -36,7 +36,7 @@ export default function ProductDetailsNutrition() {
         </tbody>
     </table>
     <div className="border-top">
-     <Button onClick={() => dispatch(addProduct(product))} outline>
+     <Button data-testid="addBtn" onClick={() => dispatch(addProduct(product))} outline>
      ${product.price}
    </Button>
    </div>

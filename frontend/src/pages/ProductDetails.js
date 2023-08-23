@@ -9,8 +9,9 @@ export default function ProductDetails() {
   const [product, setProduct] = useState({});
   const params = useParams();
   const cart = useSelector(state => state.cart);
+  console.log(cart);
   const {get, loading} = useFetch(window.location.origin);
-  const productFromCart = cart.find((product) => product._id === product._id);
+  const productFromCart = cart.find((p) => p._id === product._id);
   const quantity = productFromCart ? productFromCart.quantity : 0;
 
   useEffect(() => {
@@ -26,7 +27,7 @@ export default function ProductDetails() {
       {loading && <Loader />}
       {product && <>
       <div>
-      <Link to="/products"><Button outline className="product-details">Back</Button></Link>
+      <Link data-testid="backBtn" to="/products"><Button outline className="product-details">Back</Button></Link>
         <div className="center margin">
         <div className="product-image-container">
         <img
@@ -35,10 +36,11 @@ export default function ProductDetails() {
           height="125"
           className="product-details-image"
           alt={product.name}
+          data-testid="image"
         />
         {quantity > 0 && (
             <div className="product-quantity-container">
-              <div className="product-quantity">{quantity}</div>
+              <div data-testid="quantity" className="product-quantity">{quantity}</div>
             </div>
           )}
           </div>
@@ -49,18 +51,17 @@ export default function ProductDetails() {
           <h2 className="text-center">{product.name}</h2>
           <ul>
           <li>
-              <NavLink className={({isActive}) => isActive ? "tab-active" : ""} to="" end>
+              <NavLink data-testid="tab" className={({isActive}) => isActive ? "tab-active" : ""} to="" end>
                 Details
               </NavLink>
             </li>
             <li>
-              <NavLink className={({isActive}) => isActive ? "tab-active" : ""} to="nutrition">
+              <NavLink data-testid="tab" className={({isActive}) => isActive ? "tab-active" : ""} to="nutrition">
                 Nutrition
               </NavLink>
             </li>
             <li>
-              <NavLink
-                className={({isActive}) => isActive ? "tab-active" : ""} to="storage">
+              <NavLink data-testid="tab"className={({isActive}) => isActive ? "tab-active" : ""} to="storage">
                 Storage
               </NavLink>
             </li>
